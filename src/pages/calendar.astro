@@ -9,17 +9,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" aria-labelledby="events-heading">
     <div class="container">
-      <div class="eventbrite-embed">
-        <iframe
-          src="https://www.eventbrite.com/o/make-nashville-9796500814"
-          title="Make Nashville events on Eventbrite"
-          loading="lazy"
-        ></iframe>
-        <p class="eventbrite-fallback">
-          View our events on <a href="https://www.eventbrite.com/o/make-nashville-9796500814">Eventbrite</a>.
-        </p>
+      <h2 class="sr-only" id="events-heading">Events</h2>
+      <div class="eventbrite-cta">
+        <p>Browse upcoming classes, workshops, and open houses on Eventbrite.</p>
+        <a href="https://www.eventbrite.com/o/make-nashville-9796500814" class="btn btn--primary">View Events on Eventbrite</a>
       </div>
     </div>
   </section>
@@ -40,23 +35,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: var(--color-text-dim);
   }
 
-  .eventbrite-embed {
-    border: 2px solid var(--color-border);
-    border-radius: 8px;
-    overflow: hidden;
-    min-height: 600px;
-  }
-
-  .eventbrite-embed iframe {
-    width: 100%;
-    height: 600px;
-    border: none;
-  }
-
-  .eventbrite-fallback {
+  .eventbrite-cta {
     text-align: center;
-    padding: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    background: var(--color-bg-alt);
+    border-radius: 8px;
+  }
+
+  .eventbrite-cta p {
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
   }
 </style>

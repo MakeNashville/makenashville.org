@@ -5,7 +5,6 @@ import Testimonial from '../components/Testimonial.astro';
 import { getCollection, render } from 'astro:content';
 
 const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.data.order);
-const base = import.meta.env.BASE_URL;
 
 const shopsWithContent = await Promise.all(
   shops.map(async (shop) => {
@@ -96,15 +95,4 @@ const shopsWithContent = await Promise.all(
     color: var(--color-text);
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
 </style>
