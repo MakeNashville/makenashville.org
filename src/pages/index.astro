@@ -1,7 +1,138 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ShopCard from '../components/ShopCard.astro';
+import Testimonial from '../components/Testimonial.astro';
+import { getCollection } from 'astro:content';
+
+const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.data.order);
+const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="Make Nashville">
-  <h1>Make Nashville</h1>
-  <p>Like a gym, but with tools for making stuff.</p>
+  <section class="hero">
+    <div class="container">
+      <h1>Make Nashville</h1>
+      <p class="hero-tagline">Like a gym, but with tools for making stuff.</p>
+      <p class="hero-subtitle">12,000 square feet of shops and endless possibility.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="shops-heading">
+    <div class="container">
+      <h2 id="shops-heading">Creative Spaces</h2>
+      <div class="shop-grid">
+        {shops.map(shop => (
+          <ShopCard
+            title={shop.data.title}
+            tagline={shop.data.tagline}
+            image={shop.data.image}
+            slug={shop.id}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Testimonial
+    quote="The best thing about Make Nashville is the people there... creatives sharing knowledge and experiences."
+    attribution="Make Nashville member"
+  />
+
+  <section class="section" aria-labelledby="pillars-heading">
+    <div class="container">
+      <h2 class="sr-only" id="pillars-heading">What we offer</h2>
+      <div class="three-col">
+        <div>
+          <h3>Classes</h3>
+          <p>Member-led classes through <a href="https://www.eventbrite.com/o/make-nashville-9796500814">Eventbrite</a></p>
+        </div>
+        <div>
+          <h3>Community</h3>
+          <p>Connect via <a href="https://makenashville.slack.com">Slack</a> (24/7) and in-person events</p>
+        </div>
+        <div>
+          <h3>Access</h3>
+          <p>24/7 facility access with tours available</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt membership-cta" aria-labelledby="membership-heading">
+    <div class="container">
+      <h2 id="membership-heading">$75/month</h2>
+      <p>No contract. Cancel anytime. 18+ with valid photo ID.</p>
+      <a href="https://members.makenashville.org/civicrm/contribute/transact/?reset=1&id=19" class="btn btn--primary">Join Us</a>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .hero-tagline {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-dim);
+  }
+
+  .section h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+  }
+
+  .three-col h3 {
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.1rem;
+  }
+
+  .three-col p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .membership-cta {
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+  }
+
+  .membership-cta h2 {
+    font-size: 2rem;
+  }
+
+  .membership-cta p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
