@@ -1,0 +1,278 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.data.order);
+const orientationRequired = shops.filter(s => s.data.orientationRequired);
+const openAccess = shops.filter(s => !s.data.orientationRequired);
+---
+<BaseLayout title="Get Involved - Make Nashville" description="Join Make Nashville for $75/month. Learn about membership, volunteering, donations, and policies.">
+  <section class="hero">
+    <div class="container">
+      <h1>Membership</h1>
+      <p class="price">$75/month</p>
+      <p class="hero-subtitle">No contract. Cancel anytime. 18+ with valid photo ID.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="includes-heading">
+    <div class="container">
+      <h2 id="includes-heading">What's Included</h2>
+      <ul class="includes-list" role="list">
+        <li>Key fob for 24/7 facility access</li>
+        <li>Tool access after safety training</li>
+        <li>Slack community membership</li>
+        <li>Member-led shop orientations</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="join-heading">
+    <div class="container">
+      <h2 id="join-heading">How to Join</h2>
+      <ol class="steps" role="list">
+        <li>
+          <span class="step-number">1</span>
+          <div>
+            <strong>Attend an Open House</strong>
+            <p>Every other Friday at 6 PM. Tour the shops and meet members.</p>
+            <a href="https://www.eventbrite.com/e/165415485169?aff=oddtdtcreator" class="btn btn--primary">RSVP on Eventbrite</a>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          <div>
+            <strong>Complete Paperwork & Payment</strong>
+            <p>Sign the membership agreement and set up monthly payment.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          <div>
+            <strong>Complete Orientations</strong>
+            <p>Required before accessing equipment in certain shops.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="access-heading">
+    <div class="container">
+      <h2 id="access-heading">Shop Access</h2>
+      <div class="access-grid">
+        <div class="access-card">
+          <h3>Orientation Required</h3>
+          <ul role="list">
+            {orientationRequired.map(shop => <li>{shop.data.title}</li>)}
+          </ul>
+        </div>
+        <div class="access-card">
+          <h3>Open Access</h3>
+          <ul role="list">
+            {openAccess.map(shop => <li>{shop.data.title}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="contribute-heading">
+    <div class="container">
+      <h2 id="contribute-heading">Give Back</h2>
+      <div class="contribute-grid">
+        <div class="contribute-card">
+          <h3>Volunteer</h3>
+          <p>Make Nashville employs two paid staff members. The daily maintenance, care, and leadership of the space is volunteer-based.</p>
+        </div>
+        <div class="contribute-card">
+          <h3>Donate</h3>
+          <p>Support the space through monetary donations via our <a href="https://go.makenashville.org/sustaining">contribution page</a>, <a href="https://venmo.com/makenashville">Venmo</a>, or check. Physical item donations require shop captain approval.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="policies-heading">
+    <div class="container">
+      <h2 id="policies-heading">Policies & FAQ</h2>
+      <dl class="faq">
+        <div class="faq-item">
+          <dt>Guests</dt>
+          <dd>Guests are welcome with a signed liability waiver and must be accompanied by a member at all times.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Children</dt>
+          <dd>Children are permitted except in the woodshop, metalshop, and autoshop. A signed waiver is required.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Dogs</dt>
+          <dd>Dogs are allowed unless their behavior concerns other members.</dd>
+        </div>
+        <div class="faq-item">
+          <dt>Parking</dt>
+          <dd>Park in front of the building or in the gated side area (members only).</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section--alt cta-section">
+    <div class="container">
+      <h2>Ready to make something?</h2>
+      <a href="https://members.makenashville.org/civicrm/contribute/transact/?reset=1&id=19" class="btn btn--primary">Join Us</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .hero-subtitle {
+    color: var(--color-text-dim);
+  }
+
+  .section h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .includes-list {
+    list-style: none;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .includes-list li {
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+  }
+
+  .includes-list li:last-child {
+    border-bottom: none;
+  }
+
+  .steps {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .steps li {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+  }
+
+  .step-number {
+    background: var(--color-link);
+    color: var(--color-text);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .steps p {
+    color: var(--color-text-muted);
+    margin: 0.25rem 0 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .access-grid,
+  .contribute-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .access-card,
+  .contribute-card {
+    background: var(--color-bg-alt);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+  }
+
+  .access-card h3,
+  .contribute-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .access-card ul {
+    list-style: none;
+  }
+
+  .access-card li {
+    padding: 0.25rem 0;
+    color: var(--color-text-secondary);
+  }
+
+  .contribute-card p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .faq {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-sm) 0;
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-item dt {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .faq-item dd {
+    color: var(--color-text-muted);
+    margin-left: 0;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+  }
+
+  .cta-section h2 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  @media (max-width: 600px) {
+    .access-grid,
+    .contribute-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
