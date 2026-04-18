@@ -1,0 +1,88 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  tagline: string;
+  image: string;
+  equipment: string[];
+  content: any;
+}
+
+const { id, title, tagline, image, equipment, content: Content } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<article class="shop-detail" id={id}>
+  <img src={`${base}${image.replace(/^\//, '')}`} alt={`${title} shop at Make Nashville`} loading="lazy" width="800" height="500" />
+  <div class="shop-detail-body">
+    <h3>{title}</h3>
+    <p class="shop-detail-tagline">{tagline}</p>
+    <div class="shop-detail-content">
+      <Content />
+    </div>
+    <div class="shop-detail-equipment">
+      <h4>Equipment</h4>
+      <ul>
+        {equipment.map(item => <li>{item}</li>)}
+      </ul>
+    </div>
+  </div>
+</article>
+
+<style>
+  .shop-detail {
+    background: var(--color-bg-alt);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .shop-detail img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .shop-detail-body {
+    padding: var(--spacing-md);
+  }
+
+  .shop-detail h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .shop-detail-tagline {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .shop-detail-content {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.7;
+  }
+
+  .shop-detail-equipment h4 {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .shop-detail-equipment ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .shop-detail-equipment li {
+    background: var(--color-bg);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ShopDetail from '../components/ShopDetail.astro';
+import Testimonial from '../components/Testimonial.astro';
+import { getCollection, render } from 'astro:content';
+
+const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.data.order);
+const base = import.meta.env.BASE_URL;
+
+const shopsWithContent = await Promise.all(
+  shops.map(async (shop) => {
+    const { Content } = await render(shop);
+    return { shop, Content };
+  })
+);
+---
+<BaseLayout title="Our Space - Make Nashville" description="Explore Make Nashville's 12 specialized shops, from woodworking and metalwork to ceramics, 3D printing, and more.">
+  <section class="hero">
+    <div class="container">
+      <h1>Many specialized shops all under one roof</h1>
+      <p class="hero-subtitle">From precision woodworking to experimental electronics</p>
+    </div>
+  </section>
+
+  <nav class="shop-subnav" aria-label="Shop navigation">
+    <div class="container">
+      <ul role="list">
+        {shops.map(shop => (
+          <li><a href={`#${shop.id}`}>{shop.data.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section" aria-labelledby="shops-heading">
+    <div class="container">
+      <h2 class="sr-only" id="shops-heading">Our Shops</h2>
+      {shopsWithContent.map(({ shop, Content }) => (
+        <ShopDetail
+          id={shop.id}
+          title={shop.data.title}
+          tagline={shop.data.tagline}
+          image={shop.data.image}
+          equipment={shop.data.equipment}
+          content={Content}
+        />
+      ))}
+    </div>
+  </section>
+
+  <Testimonial
+    quote="From the moment I joined Make Nashville, the Slack channel immediately helped me feel like I was part of the community."
+    attribution="Jenny, Make Nashville member"
+  />
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .hero-subtitle {
+    color: var(--color-text-dim);
+  }
+
+  .shop-subnav {
+    padding: var(--spacing-sm) 0 var(--spacing-md);
+  }
+
+  .shop-subnav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    justify-content: center;
+  }
+
+  .shop-subnav a {
+    display: block;
+    background: var(--color-bg-alt);
+    color: var(--color-link);
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+
+  .shop-subnav a:hover {
+    background: var(--color-link);
+    color: var(--color-text);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>
