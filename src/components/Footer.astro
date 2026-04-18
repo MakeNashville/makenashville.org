@@ -1,0 +1,92 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-info">
+      <p class="footer-address">620b Davidson St, Nashville, TN 37213</p>
+      <p><a href="mailto:info@makenashville.org">info@makenashville.org</a></p>
+      <p class="footer-openhouse">Open House: Every other Friday at 6 PM</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <ul role="list">
+        <li><a href="https://www.eventbrite.com/o/make-nashville-9796500814">Classes</a></li>
+        <li><a href={`${base}our-space/`}>Our Space</a></li>
+        <li><a href={`${base}get-involved/`}>Pricing</a></li>
+        <li><a href="https://makenashville.slack.com">Slack</a></li>
+        <li><a href="https://go.makenashville.org/sustaining">Donate</a></li>
+        <li><a href="mailto:info@makenashville.org">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-social">
+      <a href="https://www.instagram.com/makenashville/" aria-label="Make Nashville on Instagram">Instagram</a>
+      <a href="https://github.com/MakeNashville/" aria-label="Make Nashville on GitHub">GitHub</a>
+      <a href="https://venmo.com/makenashville" aria-label="Make Nashville on Venmo">Venmo</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-bg-footer);
+    border-top: 1px solid var(--color-border);
+    padding: var(--spacing-lg) 0;
+    font-size: 0.9rem;
+  }
+
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+
+  .footer-info {
+    color: var(--color-text-dim);
+  }
+
+  .footer-info p {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .footer-openhouse {
+    margin-top: var(--spacing-sm);
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .footer-nav a {
+    color: var(--color-text-muted);
+  }
+
+  .footer-nav a:hover {
+    color: var(--color-text);
+  }
+
+  .footer-social {
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
+  .footer-social a {
+    color: var(--color-text-muted);
+  }
+
+  .footer-social a:hover {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+  }
+</style>

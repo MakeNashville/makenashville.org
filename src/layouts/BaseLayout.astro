@@ -1,4 +1,7 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -23,9 +26,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 </head>
 <body>
   <a class="skip-nav" href="#main-content">Skip to main content</a>
+  <Header />
   <main id="main-content">
     <slot />
   </main>
+  <Footer />
 </body>
 </html>
 
