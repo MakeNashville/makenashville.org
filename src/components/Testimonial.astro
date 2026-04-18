@@ -1,0 +1,35 @@
+---
+interface Props {
+  quote: string;
+  attribution: string;
+}
+
+const { quote, attribution } = Astro.props;
+---
+<blockquote class="testimonial">
+  <p>"{quote}"</p>
+  <cite>{attribution}</cite>
+</blockquote>
+
+<style>
+  .testimonial {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: var(--color-bg-dark);
+  }
+
+  .testimonial p {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto var(--spacing-sm);
+  }
+
+  .testimonial cite {
+    color: var(--color-text-dim);
+    font-size: 0.9rem;
+    font-style: normal;
+  }
+</style>

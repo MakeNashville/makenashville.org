@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  tagline: string;
+  image: string;
+  slug: string;
+}
+
+const { title, tagline, image, slug } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<a href={`${base}our-space/#${slug}`} class="shop-card">
+  <img src={`${base}${image.replace(/^\//, '')}`} alt={`${title} shop at Make Nashville`} loading="lazy" width="400" height="300" />
+  <div class="shop-card-body">
+    <h3>{title}</h3>
+    <p>{tagline}</p>
+  </div>
+</a>
+
+<style>
+  .shop-card {
+    background: var(--color-bg-alt);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: transform 0.15s;
+  }
+
+  .shop-card:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  .shop-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .shop-card-body {
+    padding: var(--spacing-sm);
+  }
+
+  .shop-card-body h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .shop-card-body p {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+</style>
