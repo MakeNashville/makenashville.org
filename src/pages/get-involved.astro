@@ -128,27 +128,34 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
 <style>
   .hero {
     text-align: center;
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-xl) 0;
   }
 
   .hero h1 {
-    font-size: 2rem;
-    margin-bottom: var(--spacing-xs);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
   }
 
   .price {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-heading);
+    margin-bottom: var(--spacing-sm);
   }
 
   .hero-subtitle {
-    color: var(--color-text-dim);
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+  }
+
+  .section {
+    padding: var(--spacing-xl) 0;
   }
 
   .section h2 {
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
   }
 
   .includes-list {
@@ -158,9 +165,10 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
   }
 
   .includes-list li {
-    padding: var(--spacing-xs) 0;
+    padding: var(--spacing-sm) 0;
     border-bottom: 1px solid var(--color-border);
     color: var(--color-text-secondary);
+    font-size: 1.05rem;
   }
 
   .includes-list li:last-child {
@@ -169,16 +177,16 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
 
   .steps {
     list-style: none;
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
   }
 
   .steps li {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
     align-items: flex-start;
   }
 
@@ -186,20 +194,28 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
     background: var(--color-accent);
     color: var(--color-white);
     border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     flex-shrink: 0;
+  }
+
+  .steps strong {
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.25rem;
   }
 
   .steps p {
     color: var(--color-text-muted);
-    margin: 0.25rem 0 0.5rem;
-    font-size: 0.95rem;
+    margin: 0.25rem 0 var(--spacing-sm);
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   .access-grid,
@@ -213,13 +229,13 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
   .contribute-card {
     background: var(--color-white);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
-    padding: var(--spacing-md);
+    border-radius: 10px;
+    padding: var(--spacing-lg) var(--spacing-md);
   }
 
   .access-card h3,
   .contribute-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: var(--spacing-sm);
   }
 
@@ -228,13 +244,15 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
   }
 
   .access-card li {
-    padding: 0.25rem 0;
+    padding: 0.4rem 0;
     color: var(--color-text-secondary);
+    font-size: 1rem;
   }
 
   .contribute-card p {
     color: var(--color-text-muted);
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 1rem;
   }
 
   .faq {
@@ -244,7 +262,7 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
 
   .faq-item {
     border-bottom: 1px solid var(--color-border);
-    padding: var(--spacing-sm) 0;
+    padding: var(--spacing-md) 0;
   }
 
   .faq-item:last-child {
@@ -253,27 +271,38 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
 
   .faq-item dt {
     font-weight: 700;
-    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
   }
 
   .faq-item dd {
     color: var(--color-text-muted);
     margin-left: 0;
+    line-height: 1.6;
   }
 
   .cta-section {
     text-align: center;
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-xl) 0;
   }
 
   .cta-section h2 {
-    margin-bottom: var(--spacing-sm);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
   }
 
   @media (max-width: 600px) {
     .access-grid,
     .contribute-grid {
       grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .section {
+      padding: var(--spacing-lg) 0;
     }
   }
 </style>
