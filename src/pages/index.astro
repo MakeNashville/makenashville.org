@@ -9,14 +9,60 @@ const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="Make Nashville">
   <div class="carousel" role="region" aria-label="Photos of Make Nashville shops">
+    <input type="radio" name="carousel" id="slide-1" class="carousel-radio" checked aria-label="Slide 1: Woodshop" />
+    <input type="radio" name="carousel" id="slide-2" class="carousel-radio" aria-label="Slide 2: Metal shop" />
+    <input type="radio" name="carousel" id="slide-3" class="carousel-radio" aria-label="Slide 3: Main workspace" />
+    <input type="radio" name="carousel" id="slide-4" class="carousel-radio" aria-label="Slide 4: Ceramics studio" />
+    <input type="radio" name="carousel" id="slide-5" class="carousel-radio" aria-label="Slide 5: Auto shop" />
+    <input type="radio" name="carousel" id="slide-6" class="carousel-radio" aria-label="Slide 6: Community" />
+
     <div class="carousel-track">
-      <img src={`${base}images/carousel/woodshop.webp`} alt="Woodshop with workbenches and tools" width="1400" height="500" />
-      <img src={`${base}images/carousel/metalshop.webp`} alt="Metal shop with welding bays" width="1400" height="500" />
-      <img src={`${base}images/carousel/big-room.webp`} alt="Main workspace at Make Nashville" width="1400" height="500" />
-      <img src={`${base}images/carousel/ceramics.webp`} alt="Ceramics studio with pottery wheels" width="1400" height="500" />
-      <img src={`${base}images/carousel/autoshop.webp`} alt="Auto shop with vehicle lift" width="1400" height="500" />
-      <img src={`${base}images/carousel/community.webp`} alt="Make Nashville community gathering" width="1400" height="500" />
-      <img src={`${base}images/carousel/woodshop.webp`} alt="" aria-hidden="true" width="1400" height="500" />
+      <div class="carousel-slide">
+        <img src={`${base}images/carousel/woodshop.webp`} alt="Woodshop with workbenches and tools" width="1400" height="500" />
+      </div>
+      <div class="carousel-slide">
+        <img src={`${base}images/carousel/metalshop.webp`} alt="Metal shop with welding bays" width="1400" height="500" />
+      </div>
+      <div class="carousel-slide">
+        <img src={`${base}images/carousel/big-room.webp`} alt="Main workspace at Make Nashville" width="1400" height="500" />
+      </div>
+      <div class="carousel-slide">
+        <img src={`${base}images/carousel/ceramics.webp`} alt="Ceramics studio with pottery wheels" width="1400" height="500" />
+      </div>
+      <div class="carousel-slide">
+        <img src={`${base}images/carousel/autoshop.webp`} alt="Auto shop with vehicle lift" width="1400" height="500" />
+      </div>
+      <div class="carousel-slide">
+        <img src={`${base}images/carousel/community.webp`} alt="Make Nashville community gathering" width="1400" height="500" />
+      </div>
+    </div>
+
+    <div class="carousel-arrows">
+      <div class="carousel-prev-group">
+        <label for="slide-6" class="carousel-arrow s1-prev" aria-label="Previous slide">&#8249;</label>
+        <label for="slide-1" class="carousel-arrow s2-prev" aria-label="Previous slide">&#8249;</label>
+        <label for="slide-2" class="carousel-arrow s3-prev" aria-label="Previous slide">&#8249;</label>
+        <label for="slide-3" class="carousel-arrow s4-prev" aria-label="Previous slide">&#8249;</label>
+        <label for="slide-4" class="carousel-arrow s5-prev" aria-label="Previous slide">&#8249;</label>
+        <label for="slide-5" class="carousel-arrow s6-prev" aria-label="Previous slide">&#8249;</label>
+      </div>
+      <div class="carousel-next-group">
+        <label for="slide-2" class="carousel-arrow s1-next" aria-label="Next slide">&#8250;</label>
+        <label for="slide-3" class="carousel-arrow s2-next" aria-label="Next slide">&#8250;</label>
+        <label for="slide-4" class="carousel-arrow s3-next" aria-label="Next slide">&#8250;</label>
+        <label for="slide-5" class="carousel-arrow s4-next" aria-label="Next slide">&#8250;</label>
+        <label for="slide-6" class="carousel-arrow s5-next" aria-label="Next slide">&#8250;</label>
+        <label for="slide-1" class="carousel-arrow s6-next" aria-label="Next slide">&#8250;</label>
+      </div>
+    </div>
+
+    <div class="carousel-dots">
+      <label for="slide-1" class="carousel-dot" aria-label="Go to slide 1"></label>
+      <label for="slide-2" class="carousel-dot" aria-label="Go to slide 2"></label>
+      <label for="slide-3" class="carousel-dot" aria-label="Go to slide 3"></label>
+      <label for="slide-4" class="carousel-dot" aria-label="Go to slide 4"></label>
+      <label for="slide-5" class="carousel-dot" aria-label="Go to slide 5"></label>
+      <label for="slide-6" class="carousel-dot" aria-label="Go to slide 6"></label>
     </div>
   </div>
 
@@ -89,6 +135,7 @@ const base = import.meta.env.BASE_URL;
 </BaseLayout>
 
 <style>
+  /* Carousel: CSS-only with radio buttons */
   .carousel {
     width: 100%;
     height: 500px;
@@ -96,52 +143,133 @@ const base = import.meta.env.BASE_URL;
     position: relative;
   }
 
-  .carousel-track {
-    display: flex;
-    width: calc(1400px * 7);
-    animation: scroll 30s linear infinite;
+  .carousel-radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 
-  .carousel-track img {
-    width: 100vw;
-    height: 500px;
-    object-fit: cover;
+  .carousel-track {
+    display: flex;
+    width: 600%;
+    height: 100%;
+    transition: transform 0.5s ease;
+  }
+
+  .carousel-slide {
+    width: calc(100% / 6);
     flex-shrink: 0;
   }
 
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    14.28% { transform: translateX(0); }
-    16.66% { transform: translateX(-100vw); }
-    30.94% { transform: translateX(-100vw); }
-    33.32% { transform: translateX(-200vw); }
-    47.60% { transform: translateX(-200vw); }
-    49.98% { transform: translateX(-300vw); }
-    64.26% { transform: translateX(-300vw); }
-    66.64% { transform: translateX(-400vw); }
-    80.92% { transform: translateX(-400vw); }
-    83.30% { transform: translateX(-500vw); }
-    97.58% { transform: translateX(-500vw); }
-    100% { transform: translateX(-600vw); }
+  .carousel-slide img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+  }
+
+  /* Slide positions */
+  #slide-1:checked ~ .carousel-track { transform: translateX(0); }
+  #slide-2:checked ~ .carousel-track { transform: translateX(-16.6667%); }
+  #slide-3:checked ~ .carousel-track { transform: translateX(-33.3333%); }
+  #slide-4:checked ~ .carousel-track { transform: translateX(-50%); }
+  #slide-5:checked ~ .carousel-track { transform: translateX(-66.6667%); }
+  #slide-6:checked ~ .carousel-track { transform: translateX(-83.3333%); }
+
+  /* Arrows */
+  .carousel-arrows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    padding: 0 var(--spacing-sm);
+  }
+
+  .carousel-arrow {
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s;
+    user-select: none;
+  }
+
+  .carousel-arrow:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  /* Show only the correct prev/next arrow per slide */
+  .carousel-arrow { display: none; }
+
+  #slide-1:checked ~ .carousel-arrows .s1-prev,
+  #slide-1:checked ~ .carousel-arrows .s1-next,
+  #slide-2:checked ~ .carousel-arrows .s2-prev,
+  #slide-2:checked ~ .carousel-arrows .s2-next,
+  #slide-3:checked ~ .carousel-arrows .s3-prev,
+  #slide-3:checked ~ .carousel-arrows .s3-next,
+  #slide-4:checked ~ .carousel-arrows .s4-prev,
+  #slide-4:checked ~ .carousel-arrows .s4-next,
+  #slide-5:checked ~ .carousel-arrows .s5-prev,
+  #slide-5:checked ~ .carousel-arrows .s5-next,
+  #slide-6:checked ~ .carousel-arrows .s6-prev,
+  #slide-6:checked ~ .carousel-arrows .s6-next {
+    display: flex;
+  }
+
+  /* Dots */
+  .carousel-dots {
+    position: absolute;
+    bottom: var(--spacing-sm);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .carousel-dot:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Active dot */
+  #slide-1:checked ~ .carousel-dots label[for="slide-1"],
+  #slide-2:checked ~ .carousel-dots label[for="slide-2"],
+  #slide-3:checked ~ .carousel-dots label[for="slide-3"],
+  #slide-4:checked ~ .carousel-dots label[for="slide-4"],
+  #slide-5:checked ~ .carousel-dots label[for="slide-5"],
+  #slide-6:checked ~ .carousel-dots label[for="slide-6"] {
+    background: rgba(255, 255, 255, 1);
   }
 
   @media (prefers-reduced-motion: reduce) {
     .carousel-track {
-      animation: none;
-    }
-    .carousel {
-      height: auto;
-    }
-    .carousel-track {
-      flex-direction: column;
-      width: 100%;
-    }
-    .carousel-track img {
-      width: 100%;
-      height: auto;
-    }
-    .carousel-track img:not(:first-child) {
-      display: none;
+      transition: none;
     }
   }
 
@@ -149,8 +277,13 @@ const base = import.meta.env.BASE_URL;
     .carousel {
       height: 300px;
     }
-    .carousel-track img {
+    .carousel-slide img {
       height: 300px;
+    }
+    .carousel-arrow {
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1.5rem;
     }
   }
 
