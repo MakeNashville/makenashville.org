@@ -17,8 +17,8 @@ const shopsWithContent = await Promise.all(
 <BaseLayout title="Our Space - Make Nashville" description="Explore Make Nashville's 12 specialized shops, from woodworking and metalwork to ceramics, 3D printing, and more.">
   <section class="hero">
     <div class="container">
-      <h1>Many specialized shops all under one roof</h1>
-      <p class="hero-subtitle">From precision woodworking to experimental electronics</p>
+      <h1>Many specialized workshops all under one roof</h1>
+      <p class="hero-subtitle">From precision woodworking to experimental electronics, every corner of Make Nashville is built to inspire our community. Discover where your next project will come to life.</p>
     </div>
   </section>
 
@@ -55,9 +55,17 @@ const shopsWithContent = await Promise.all(
   </section>
 
   <Testimonial
-    quote="From the moment I joined Make Nashville, the Slack channel immediately helped me feel like I was part of the community."
+    quote="For social anxiety peeps: I've been a member of other maker spaces and I always felt like an outsider. From the moment I joined Make Nashville, the Slack channel immediately helped me feel like I was part of the community. Then visiting the space. I felt like I was back in college art classes. There's a relaxed, creative vibe that feels familiar."
     attribution="Jenny, Make Nashville member"
   />
+
+  <section class="section cta-section">
+    <div class="container">
+      <h2>Find your people and your next project</h2>
+      <p>These tools are just the beginning. The real magic is connecting with other people to inspire and create. Join a community where your ideas have room to grow, your skills have space to develop, and your creativity has the people to support it.</p>
+      <a href={`${base}get-involved/`} class="btn btn--primary">Get Involved</a>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -113,4 +121,15 @@ const shopsWithContent = await Promise.all(
     color: var(--color-white);
   }
 
+  .cta-section {
+    text-align: center;
+    background: var(--color-bg-alt);
+  }
+
+  .cta-section p {
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin: 0 auto var(--spacing-md);
+    line-height: 1.7;
+  }
 </style>

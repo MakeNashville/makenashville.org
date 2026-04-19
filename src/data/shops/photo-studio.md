@@ -7,9 +7,8 @@ orientationRequired: false
 equipment:
   - "Colored backdrops"
   - "Godox studio lights"
-  - "Tripods"
-  - "C-stands"
-  - "Modifiers"
+  - "Various tripods & C stands"
+  - "Lighting modifiers"
   - "Reflectors"
 ---
 

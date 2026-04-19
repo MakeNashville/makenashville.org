@@ -70,14 +70,14 @@ const base = import.meta.env.BASE_URL;
     <div class="container">
       <h1>Make Nashville</h1>
       <p class="hero-tagline">Like a gym, but with tools for making stuff.</p>
-      <p class="hero-subtitle">12,000 square feet of shops and endless possibility. Welcome makers, fixers, artists, and hobbyists.</p>
-      <a href="https://members.makenashville.org/civicrm/contribute/transact/?reset=1&id=19" class="btn btn--primary hero-cta">Join Us</a>
+      <p class="hero-subtitle">Make Nashville is a nonprofit makerspace where creativity comes to life in 12,000 square feet of workshops and endless possibility. Join our community of makers, fixers, artists, and hobbyists who turn "What if..." into "I made that!"</p>
+      <a href={`${base}get-involved/`} class="btn btn--primary hero-cta">Join Us</a>
     </div>
   </section>
 
   <section class="section" aria-labelledby="shops-heading">
     <div class="container">
-      <h2 id="shops-heading">Explore the creative studios & shops of Make Nashville</h2>
+      <h2 id="shops-heading">Explore the creative spaces of Make Nashville</h2>
       <div class="shop-grid">
         {shops.map(shop => (
           <ShopCard
@@ -96,7 +96,7 @@ const base = import.meta.env.BASE_URL;
       <img src={`${base}images/ceramic-circle.webp`} alt="Group of people standing around a table displaying handmade pottery pieces" class="circle-img" width="300" height="300" />
       <div class="feature-text">
         <blockquote>
-          <p>"Having access to all the tools to make things is great, but the best thing about Make Nashville is the people there... creatives sharing knowledge and experiences."</p>
+          <p>"Having access to all the tools to make things is great, but I think my favorite part of Make Nashville is the people there. Being around creatives, having deep conversations, and learning from/sharing with all the folks there really makes for some great experiences!"</p>
           <cite>- Ralph, Make Nashville member</cite>
         </blockquote>
       </div>
@@ -108,7 +108,7 @@ const base = import.meta.env.BASE_URL;
       <img src={`${base}images/ice-cream-circle.webp`} alt="Two people smiling and holding waffle cones with ice cream" class="circle-img" width="300" height="300" />
       <div class="feature-text">
         <h2>Learn and connect through member-led classes</h2>
-        <p>Our members teach classes on everything from woodworking to electronics. Browse upcoming classes and sign up on Eventbrite.</p>
+        <p>Whether you're a complete beginner or looking to master new techniques, our workshops are hands-on and led by members who are passionate about their craft. Sign up to connect with members and learn new skills.</p>
         <a href="https://www.eventbrite.com/o/make-nashville-9796500814" class="btn btn--primary">Classes</a>
       </div>
     </div>
@@ -118,18 +118,18 @@ const base = import.meta.env.BASE_URL;
     <div class="container feature-row">
       <img src={`${base}images/building-circle.webp`} alt="Make Nashville building exterior with red metal roof and parked cars" class="circle-img" width="300" height="300" />
       <div class="feature-text">
-        <h2>It's more than tools, it's a community</h2>
-        <p>Connect with fellow makers 24/7 on Slack, at open houses every other Friday, and through community events. Make Nashville is volunteer-run and member-driven.</p>
-        <a href={`${base}get-involved/`} class="btn btn--primary">Get Involved</a>
+        <h2>A creative space</h2>
+        <p>Located in the heart of Nashville, our 12,000 sq ft facility offers 24/7 access to members, making it easy to pop in and create whenever you like, whether that's at 2pm or 2am. Schedule a tour of the space to see what we're all about.</p>
+        <a href={`${base}our-space/`} class="btn btn--primary">Our Space</a>
       </div>
     </div>
   </section>
 
   <section class="section membership-cta" aria-labelledby="membership-heading">
     <div class="container">
-      <h2 id="membership-heading">$75/month</h2>
-      <p>No contract. Cancel anytime. 18+ with valid photo ID.</p>
-      <a href="https://members.makenashville.org/civicrm/contribute/transact/?reset=1&id=19" class="btn btn--primary">Join Us</a>
+      <h2 id="membership-heading">Ready to join our community and start making?</h2>
+      <p>Join other makers, inventors, artists, and doers. Your membership includes the space, you bring the supplies and ideas.</p>
+      <a href={`${base}get-involved/`} class="btn btn--primary">Get Involved</a>
     </div>
   </section>
 </BaseLayout>
