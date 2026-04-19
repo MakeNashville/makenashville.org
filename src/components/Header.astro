@@ -47,6 +47,7 @@ const navLinks = [
     position: sticky;
     top: 0;
     z-index: 50;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   }
 
   .site-nav {
@@ -86,9 +87,14 @@ const navLinks = [
     text-decoration: none;
   }
 
-  .nav-link:hover,
+  .nav-link:hover {
+    color: var(--color-text);
+  }
+
   .nav-link.active {
     color: var(--color-text);
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 2px;
   }
 
   .nav-cta {
@@ -139,6 +145,7 @@ const navLinks = [
       background: var(--color-header);
       padding: var(--spacing-sm) var(--spacing-md);
       gap: var(--spacing-sm);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .nav-toggle:checked ~ .nav-links {

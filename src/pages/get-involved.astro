@@ -96,24 +96,24 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
   <section class="section" aria-labelledby="policies-heading">
     <div class="container">
       <h2 id="policies-heading">Policies & FAQ</h2>
-      <dl class="faq">
-        <div class="faq-item">
-          <dt>Guests</dt>
-          <dd>Guests are welcome with a signed liability waiver and must be accompanied by a member at all times.</dd>
-        </div>
-        <div class="faq-item">
-          <dt>Children</dt>
-          <dd>Children are permitted except in the woodshop, metalshop, and autoshop. A signed waiver is required.</dd>
-        </div>
-        <div class="faq-item">
-          <dt>Dogs</dt>
-          <dd>Dogs are allowed unless their behavior concerns other members.</dd>
-        </div>
-        <div class="faq-item">
-          <dt>Parking</dt>
-          <dd>Park in front of the building or in the gated side area (members only).</dd>
-        </div>
-      </dl>
+      <div class="faq">
+        <details class="faq-item">
+          <summary>Guests</summary>
+          <p>Guests are welcome with a signed liability waiver and must be accompanied by a member at all times.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Children</summary>
+          <p>Children are permitted except in the woodshop, metalshop, and autoshop. A signed waiver is required.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Dogs</summary>
+          <p>Dogs are allowed unless their behavior concerns other members.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Parking</summary>
+          <p>Park in front of the building or in the gated side area (members only).</p>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -140,6 +140,7 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
     font-size: 2rem;
     font-weight: 700;
     font-family: var(--font-heading);
+    color: var(--color-accent);
     margin-bottom: var(--spacing-sm);
   }
 
@@ -262,23 +263,46 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
 
   .faq-item {
     border-bottom: 1px solid var(--color-border);
-    padding: var(--spacing-md) 0;
   }
 
   .faq-item:last-child {
     border-bottom: none;
   }
 
-  .faq-item dt {
+  .faq-item summary {
+    font-family: var(--font-heading);
     font-weight: 700;
     font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: var(--spacing-md) 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .faq-item dd {
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    font-weight: 300;
     color: var(--color-text-muted);
-    margin-left: 0;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] summary::after {
+    content: '-';
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item p {
+    color: var(--color-text-muted);
     line-height: 1.6;
+    padding-bottom: var(--spacing-md);
   }
 
   .cta-section {

@@ -1,7 +1,7 @@
 :root {
   --color-bg: #ffffff;
   --color-bg-alt: #f0f0f0;
-  --color-bg-dark: #fafafa;
+  --color-bg-dark: #f5f5f5;
   --color-bg-footer: #151517;
   --color-text: #151517;
   --color-text-secondary: #333333;
@@ -13,7 +13,7 @@
   --color-header: #ffffff;
   --color-white: #ffffff;
   --font-heading: 'Oswald', Helvetica, Arial, sans-serif;
-  --font-body: 'Libre Franklin', Georgia, 'Times New Roman', serif;
+  --font-body: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
   --max-width: 1200px;
   --spacing-xs: 0.5rem;
@@ -39,11 +39,18 @@ html {
   font-size: 16px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 body {
@@ -101,7 +108,7 @@ a:hover {
 .shop-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 }
 
 @media (max-width: 900px) {
@@ -118,7 +125,7 @@ a:hover {
 
 /* Section spacing */
 .section {
-  padding: var(--spacing-lg) 0;
+  padding: var(--spacing-xl) 0;
 }
 
 .section--alt {
@@ -151,8 +158,8 @@ a:hover {
 }
 
 .btn--primary:hover {
-  background: var(--color-text);
-  color: var(--color-accent);
+  background: #a00d24;
+  color: var(--color-white);
 }
 
 /* Three-column layout */
