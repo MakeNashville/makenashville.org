@@ -5,19 +5,21 @@ import Testimonial from '../components/Testimonial.astro';
 import { getCollection } from 'astro:content';
 
 const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.data.order);
+const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="Make Nashville">
   <section class="hero">
     <div class="container">
       <h1>Make Nashville</h1>
       <p class="hero-tagline">Like a gym, but with tools for making stuff.</p>
-      <p class="hero-subtitle">12,000 square feet of shops and endless possibility.</p>
+      <p class="hero-subtitle">12,000 square feet of shops and endless possibility. Welcome makers, fixers, artists, and hobbyists.</p>
+      <a href="https://members.makenashville.org/civicrm/contribute/transact/?reset=1&id=19" class="btn btn--primary hero-cta">Join Us</a>
     </div>
   </section>
 
   <section class="section" aria-labelledby="shops-heading">
     <div class="container">
-      <h2 id="shops-heading">Creative Spaces</h2>
+      <h2 id="shops-heading">Explore the creative spaces of Make Nashville</h2>
       <div class="shop-grid">
         {shops.map(shop => (
           <ShopCard
@@ -31,32 +33,41 @@ const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.dat
     </div>
   </section>
 
-  <Testimonial
-    quote="The best thing about Make Nashville is the people there... creatives sharing knowledge and experiences."
-    attribution="Make Nashville member"
-  />
-
-  <section class="section" aria-labelledby="pillars-heading">
-    <div class="container">
-      <h2 class="sr-only" id="pillars-heading">What we offer</h2>
-      <div class="three-col">
-        <div>
-          <h3>Classes</h3>
-          <p>Member-led classes through <a href="https://www.eventbrite.com/o/make-nashville-9796500814">Eventbrite</a></p>
-        </div>
-        <div>
-          <h3>Community</h3>
-          <p>Connect via <a href="https://makenashville.slack.com">Slack</a> (24/7) and in-person events</p>
-        </div>
-        <div>
-          <h3>Access</h3>
-          <p>24/7 facility access with tours available</p>
-        </div>
+  <section class="section section--alt">
+    <div class="container feature-row">
+      <img src={`${base}images/ceramic-circle.webp`} alt="Group of people standing around a table displaying handmade pottery pieces" class="circle-img" width="300" height="300" />
+      <div class="feature-text">
+        <blockquote>
+          <p>"Having access to all the tools to make things is great, but the best thing about Make Nashville is the people there... creatives sharing knowledge and experiences."</p>
+          <cite>- Ralph, Make Nashville member</cite>
+        </blockquote>
       </div>
     </div>
   </section>
 
-  <section class="section section--alt membership-cta" aria-labelledby="membership-heading">
+  <section class="section">
+    <div class="container feature-row feature-row--reverse">
+      <img src={`${base}images/ice-cream-circle.webp`} alt="Two people smiling and holding waffle cones with ice cream" class="circle-img" width="300" height="300" />
+      <div class="feature-text">
+        <h2>Learn and connect through member-led classes</h2>
+        <p>Our members teach classes on everything from woodworking to electronics. Browse upcoming classes and sign up on Eventbrite.</p>
+        <a href="https://www.eventbrite.com/o/make-nashville-9796500814" class="btn btn--primary">Classes</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container feature-row">
+      <img src={`${base}images/building-circle.webp`} alt="Make Nashville building exterior with red metal roof and parked cars" class="circle-img" width="300" height="300" />
+      <div class="feature-text">
+        <h2>It's more than tools, it's a community</h2>
+        <p>Connect with fellow makers 24/7 on Slack, at open houses every other Friday, and through community events. Make Nashville is volunteer-run and member-driven.</p>
+        <a href={`${base}get-involved/`} class="btn btn--primary">Get Involved</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section membership-cta" aria-labelledby="membership-heading">
     <div class="container">
       <h2 id="membership-heading">$75/month</h2>
       <p>No contract. Cancel anytime. 18+ with valid photo ID.</p>
@@ -84,7 +95,13 @@ const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.dat
 
   .hero-subtitle {
     font-size: 1rem;
-    color: var(--color-text-dim);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-md);
+  }
+
+  .hero-cta {
+    margin-top: var(--spacing-sm);
   }
 
   .section h2 {
@@ -93,19 +110,58 @@ const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.dat
     font-size: 1.5rem;
   }
 
-  .three-col h3 {
-    margin-bottom: var(--spacing-xs);
-    font-size: 1.1rem;
+  .feature-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
   }
 
-  .three-col p {
+  .feature-row--reverse {
+    flex-direction: row-reverse;
+  }
+
+  .circle-img {
+    border-radius: 50%;
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .feature-text {
+    flex: 1;
+  }
+
+  .feature-text h2 {
+    text-align: left;
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .feature-text p {
     color: var(--color-text-muted);
-    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .feature-text blockquote p {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .feature-text blockquote cite {
+    color: var(--color-text-muted);
+    font-style: normal;
+    font-size: 0.9rem;
   }
 
   .membership-cta {
     text-align: center;
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-alt);
   }
 
   .membership-cta h2 {
@@ -115,6 +171,23 @@ const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.dat
   .membership-cta p {
     color: var(--color-text-muted);
     margin-bottom: var(--spacing-md);
+  }
+
+  @media (max-width: 768px) {
+    .feature-row,
+    .feature-row--reverse {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .feature-text h2 {
+      text-align: center;
+    }
+
+    .circle-img {
+      width: 200px;
+      height: 200px;
+    }
   }
 
   @media (max-width: 600px) {

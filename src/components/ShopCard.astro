@@ -19,16 +19,18 @@ const base = import.meta.env.BASE_URL;
 
 <style>
   .shop-card {
-    background: var(--color-bg-alt);
-    border-radius: 8px;
+    background: var(--color-white);
+    border-radius: 10px;
     overflow: hidden;
     text-decoration: none;
     color: var(--color-text);
-    transition: transform 0.15s;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.15s, box-shadow 0.15s;
   }
 
   .shop-card:hover {
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     text-decoration: none;
   }
 
