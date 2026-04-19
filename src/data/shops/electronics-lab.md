@@ -2,7 +2,7 @@
 title: "Electronics Lab"
 tagline: "Circuit building workbenches"
 image: "/images/shops/electronics-lab.webp"
-order: 7
+order: 8
 orientationRequired: false
 equipment:
   - "Oscilloscopes"

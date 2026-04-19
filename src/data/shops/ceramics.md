@@ -2,7 +2,7 @@
 title: "Ceramics"
 tagline: "Pottery wheels, kilns, and glazing"
 image: "/images/shops/ceramics.webp"
-order: 5
+order: 3
 orientationRequired: false
 equipment:
   - "15 pottery wheels"

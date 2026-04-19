@@ -2,7 +2,7 @@
 title: "Autoshop"
 tagline: "Vehicle maintenance with lift"
 image: "/images/shops/autoshop.webp"
-order: 3
+order: 6
 orientationRequired: true
 equipment:
   - "40-inch lift"

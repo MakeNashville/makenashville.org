@@ -2,7 +2,7 @@
 title: "CNC"
 tagline: "Mills with dust collection and CAD/CAM software"
 image: "/images/shops/cnc.webp"
-order: 4
+order: 1
 orientationRequired: false
 equipment:
   - "2'x2' Axiom"

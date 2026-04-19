@@ -2,7 +2,7 @@
 title: "Laser"
 tagline: "CO2 laser with Lightburn software"
 image: "/images/shops/laser.webp"
-order: 8
+order: 2
 orientationRequired: false
 equipment:
   - "20\"x28\" Omtech CO2 laser"

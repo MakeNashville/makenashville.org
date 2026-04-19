@@ -2,7 +2,7 @@
 title: "Art Studio"
 tagline: "Easels and painting supplies"
 image: "/images/shops/art-studio.webp"
-order: 2
+order: 5
 orientationRequired: false
 equipment:
   - "Easels"

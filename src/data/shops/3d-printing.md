@@ -2,7 +2,7 @@
 title: "3D Printing"
 tagline: "Modern FDM printers with finishing tools"
 image: "/images/shops/3d-printing.webp"
-order: 1
+order: 4
 orientationRequired: false
 equipment:
   - "4x Bambu Lab P1S"

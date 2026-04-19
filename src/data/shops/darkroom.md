@@ -2,7 +2,7 @@
 title: "Darkroom"
 tagline: "Film photography processing"
 image: "/images/shops/darkroom.webp"
-order: 6
+order: 7
 orientationRequired: false
 equipment:
   - "4 Beseler enlargers"
