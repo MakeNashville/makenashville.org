@@ -8,7 +8,7 @@ const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.dat
 const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="Make Nashville">
-  <div class="carousel" aria-label="Photos of Make Nashville shops">
+  <div class="carousel" role="region" aria-label="Photos of Make Nashville shops">
     <div class="carousel-track">
       <img src={`${base}images/carousel/woodshop.webp`} alt="Woodshop with workbenches and tools" width="1400" height="500" />
       <img src={`${base}images/carousel/metalshop.webp`} alt="Metal shop with welding bays" width="1400" height="500" />

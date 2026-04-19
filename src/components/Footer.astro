@@ -20,11 +20,13 @@ const base = import.meta.env.BASE_URL;
       </ul>
     </nav>
 
-    <div class="footer-social">
-      <a href="https://www.instagram.com/makenashville/" aria-label="Make Nashville on Instagram">Instagram</a>
-      <a href="https://github.com/MakeNashville/" aria-label="Make Nashville on GitHub">GitHub</a>
-      <a href="https://venmo.com/makenashville" aria-label="Make Nashville on Venmo">Venmo</a>
-    </div>
+    <nav class="footer-social" aria-label="Social media links">
+      <ul role="list">
+        <li><a href="https://www.instagram.com/makenashville/" aria-label="Make Nashville on Instagram">Instagram</a></li>
+        <li><a href="https://github.com/MakeNashville/" aria-label="Make Nashville on GitHub">GitHub</a></li>
+        <li><a href="https://venmo.com/makenashville" aria-label="Make Nashville on Venmo">Venmo</a></li>
+      </ul>
+    </nav>
   </div>
 </footer>
 
@@ -44,7 +46,7 @@ const base = import.meta.env.BASE_URL;
   }
 
   .footer-info {
-    color: #999;
+    color: #aaaaaa;
   }
 
   .footer-info p {
@@ -63,20 +65,21 @@ const base = import.meta.env.BASE_URL;
   }
 
   .footer-nav a {
-    color: #999;
+    color: #aaaaaa;
   }
 
   .footer-nav a:hover {
     color: var(--color-white);
   }
 
-  .footer-social {
+  .footer-social ul {
+    list-style: none;
     display: flex;
     gap: var(--spacing-sm);
   }
 
   .footer-social a {
-    color: #999;
+    color: #aaaaaa;
   }
 
   .footer-social a:hover {
