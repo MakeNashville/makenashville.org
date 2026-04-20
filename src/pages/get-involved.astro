@@ -155,10 +155,10 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
     </div>
   </section>
 
-  <section class="section section--alt" aria-labelledby="location-heading">
+  <section class="map-section" aria-labelledby="location-heading">
+    <h2 class="sr-only" id="location-heading">Find Us</h2>
+    <div id="map" class="map-embed" role="img" aria-label="Map showing Make Nashville location at 620b Davidson St, Nashville, TN 37213"></div>
     <div class="container">
-      <h2 id="location-heading">Find Us</h2>
-      <div id="map" class="map-embed" role="img" aria-label="Map showing Make Nashville location at 620b Davidson St, Nashville, TN 37213"></div>
       <p class="map-address">
         <a href="https://www.google.com/maps/search/?api=1&query=Make+Nashville+620b+Davidson+St+Nashville+TN+37213" aria-label="Get directions to Make Nashville (opens Google Maps)">
           620b Davidson St, Nashville, TN 37213
@@ -387,11 +387,12 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
     font-size: 1rem;
   }
 
+  .map-section {
+    padding: 0;
+  }
+
   .map-embed {
-    height: 400px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    height: 450px;
     z-index: 0;
   }
 
