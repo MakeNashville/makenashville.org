@@ -84,7 +84,7 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
       <div class="contribute-grid">
         <div class="contribute-card">
           <h3>Volunteer</h3>
-          <p>Make Nashville employs two paid staff members. The daily maintenance, care, and leadership of the space is volunteer-based. As members, we join the community to pitch in and help in the upkeep of the space. We always recommend members volunteer sustainably. Also, you can choose to add an additional monthly contribution to support our efforts.</p>
+          <p>Make Nashville employs two paid staff members. The daily maintenance, care, and leadership of the space is volunteer-based. As members, we join the community to pitch in and help in the upkeep of the space. We always recommend members volunteer sustainably.</p>
         </div>
         <div class="contribute-card">
           <h3>Donate</h3>
@@ -155,7 +155,26 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
     </div>
   </section>
 
-  <section class="section section--alt cta-section">
+  <section class="section section--alt" aria-labelledby="location-heading">
+    <div class="container">
+      <h2 id="location-heading">Find Us</h2>
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3221.5!2d-86.7516!3d36.1866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886466e55d4e9a9d%3A0x4b2e5b8a4c0b6f1a!2sMake%20Nashville!5e0!3m2!1sen!2sus!4v1"
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Make Nashville location on Google Maps"
+        ></iframe>
+      </div>
+      <p class="map-address">620b Davidson St, Nashville, TN 37213</p>
+    </div>
+  </section>
+
+  <section class="section cta-section">
     <div class="container">
       <h2>Ready to make something?</h2>
       <a href="https://members.makenashville.org/civicrm/contribute/transact/?reset=1&id=19" class="btn btn--primary">Join Us</a>
@@ -354,6 +373,23 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
     text-align: center;
     color: var(--color-text-muted);
     margin-top: var(--spacing-lg);
+    font-size: 1rem;
+  }
+
+  .map-embed {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .map-embed iframe {
+    display: block;
+  }
+
+  .map-address {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-sm);
     font-size: 1rem;
   }
 

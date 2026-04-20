@@ -4,21 +4,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Calendar - Make Nashville" description="Upcoming classes, workshops, and open houses at Make Nashville.">
   <section class="hero">
     <div class="container">
-      <h1>Upcoming Classes & Events</h1>
-      <p class="hero-subtitle">Member-led workshops and open houses</p>
+      <h1>Events Calendar</h1>
+      <p class="hero-subtitle">This calendar shows all formal classes and workshops at Make Nashville. Some classes are open to the public, while others (including all orientations) are available for members only. Be sure to follow the details of each event to see if it's ticketed or requires membership.</p>
     </div>
   </section>
 
   <section class="section" aria-labelledby="events-heading">
     <div class="container">
       <h2 class="sr-only" id="events-heading">Events</h2>
-      <div class="eventbrite-cta">
-        <p>Browse upcoming classes, workshops, and open houses on Eventbrite.</p>
-        <a href="https://www.eventbrite.com/o/make-nashville-9796500814" class="btn btn--primary">View Events on Eventbrite</a>
+      <div class="calendar-embed">
+        <div data-events-calendar-app data-project-id="proj_gPG5q07rN4QaZFuMM4fwX"></div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<script type="text/javascript" src="//dist.eventscalendar.co/embed.js"></script>
 
 <style>
   .hero {
@@ -28,24 +29,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .hero h1 {
     font-size: 2rem;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
   }
 
   .hero-subtitle {
-    color: var(--color-text-dim);
-  }
-
-  .eventbrite-cta {
-    text-align: center;
-    padding: var(--spacing-xl);
-    background: var(--color-white);
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  }
-
-  .eventbrite-cta p {
     color: var(--color-text-muted);
-    margin-bottom: var(--spacing-md);
-    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .calendar-embed {
+    min-height: 600px;
   }
 </style>
