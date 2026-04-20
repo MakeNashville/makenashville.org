@@ -15,6 +15,10 @@ const shopsWithContent = await Promise.all(
 );
 ---
 <BaseLayout title="Our Space - Make Nashville" description="Explore Make Nashville's 12 specialized shops, from woodworking and metalwork to ceramics, 3D printing, and more.">
+  <div class="hero-image">
+    <img src={`${base}images/building-exterior.webp`} alt="Make Nashville makerspace building exterior with red metal roof" width="1400" height="500" />
+  </div>
+
   <section class="hero">
     <div class="container">
       <h1>Many specialized workshops all under one roof</h1>
@@ -69,6 +73,18 @@ const shopsWithContent = await Promise.all(
 </BaseLayout>
 
 <style>
+  .hero-image {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+  }
+
   .hero {
     text-align: center;
     padding: var(--spacing-lg) 0;

@@ -35,16 +35,29 @@ const base = import.meta.env.BASE_URL;
     overflow: hidden;
     margin-bottom: var(--spacing-md);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .shop-detail img {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: 100%;
     object-fit: cover;
   }
 
   .shop-detail-body {
     padding: var(--spacing-md);
+  }
+
+  @media (max-width: 768px) {
+    .shop-detail {
+      grid-template-columns: 1fr;
+    }
+
+    .shop-detail img {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
   }
 
   .shop-detail h3 {
