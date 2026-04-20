@@ -181,14 +181,14 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
   document.addEventListener('DOMContentLoaded', function () {
     var map = L.map('map', {
       scrollWheelZoom: false,
-    }).setView([36.18628, -86.75137], 16);
+    }).setView([36.16110, -86.75419], 16);
 
     L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>, &copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
     }).addTo(map);
 
-    var marker = L.marker([36.18628, -86.75137]).addTo(map);
+    var marker = L.marker([36.16110, -86.75419]).addTo(map);
     marker.bindPopup('<strong>Make Nashville</strong><br>620b Davidson St<br>Nashville, TN 37213').openPopup();
   });
 </script>
