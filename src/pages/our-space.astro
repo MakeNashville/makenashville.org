@@ -52,6 +52,7 @@ const shopsWithContent = await Promise.all(
           tagline={shop.data.tagline}
           image={shop.data.image}
           equipment={shop.data.equipment}
+          orientationRequired={shop.data.orientationRequired}
           content={Content}
         />
       ))}
@@ -74,7 +75,6 @@ const shopsWithContent = await Promise.all(
 
 <style>
   .hero-image {
-    width: 100%;
     overflow: hidden;
   }
 
@@ -83,6 +83,7 @@ const shopsWithContent = await Promise.all(
     height: 400px;
     object-fit: cover;
     object-position: center;
+    scale: 1.08;
   }
 
   .hero {
