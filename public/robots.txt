@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://makenashville.github.io/makenashville.org/sitemap-index.xml

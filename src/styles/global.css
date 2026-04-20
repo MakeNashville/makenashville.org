@@ -5,7 +5,7 @@
   --color-bg-footer: #151517;
   --color-text: #151517;
   --color-text-secondary: #333333;
-  --color-text-muted: #707070;
+  --color-text-muted: #666666;
   --color-text-dim: #767676;
   --color-border: #dddddd;
   --color-accent: #c8102e;
@@ -14,7 +14,7 @@
   --color-white: #ffffff;
   --font-heading: 'Oswald', Helvetica, Arial, sans-serif;
   --font-body: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
+  --font-mono: monospace;
   --max-width: 1200px;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;

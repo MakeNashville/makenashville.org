@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.data.order);
 const base = import.meta.env.BASE_URL;
 ---
-<BaseLayout title="Make Nashville">
+<BaseLayout title="Make Nashville - Nashville's Community Makerspace">
   <div class="carousel" role="region" aria-label="Photos of Make Nashville shops">
     <input type="radio" name="carousel" id="slide-1" class="carousel-radio" checked aria-label="Slide 1: Woodshop" />
     <input type="radio" name="carousel" id="slide-2" class="carousel-radio" aria-label="Slide 2: Metal shop" />
@@ -21,19 +21,19 @@ const base = import.meta.env.BASE_URL;
         <img src={`${base}images/carousel/woodshop.webp`} alt="Woodshop with workbenches and tools" width="1400" height="500" />
       </div>
       <div class="carousel-slide">
-        <img src={`${base}images/carousel/metalshop.webp`} alt="Metal shop with welding bays" width="1400" height="500" />
+        <img src={`${base}images/carousel/metalshop.webp`} alt="Metal shop with welding bays" width="1400" height="500" loading="lazy" />
       </div>
       <div class="carousel-slide">
-        <img src={`${base}images/carousel/big-room.webp`} alt="Main workspace at Make Nashville" width="1400" height="500" />
+        <img src={`${base}images/carousel/big-room.webp`} alt="Main workspace at Make Nashville" width="1400" height="500" loading="lazy" />
       </div>
       <div class="carousel-slide">
-        <img src={`${base}images/carousel/ceramics.webp`} alt="Ceramics studio with pottery wheels" width="1400" height="500" />
+        <img src={`${base}images/carousel/ceramics.webp`} alt="Ceramics studio with pottery wheels" width="1400" height="500" loading="lazy" />
       </div>
       <div class="carousel-slide">
-        <img src={`${base}images/carousel/autoshop.webp`} alt="Auto shop with vehicle lift" width="1400" height="500" />
+        <img src={`${base}images/carousel/autoshop.webp`} alt="Auto shop with vehicle lift" width="1400" height="500" loading="lazy" />
       </div>
       <div class="carousel-slide">
-        <img src={`${base}images/carousel/community.webp`} alt="Make Nashville community gathering" width="1400" height="500" />
+        <img src={`${base}images/carousel/community.webp`} alt="Make Nashville community gathering" width="1400" height="500" loading="lazy" />
       </div>
     </div>
 
