@@ -20,6 +20,7 @@ equipment:
   - "2 Oneida Dust Gorillas"
   - "Rigid Cordless Hand Tools"
   - "Corded Hand Tools"
+  - "30 Day Project Storage"
   - "Clamps, chisels and other various woodworking tools"
 ---
 
