@@ -11,6 +11,7 @@ equipment:
   - "Soldering tools"
   - "Breadboards"
   - "Through-hole components"
+  - "Hot Glue Gun"
 ---
 
 Workbenches with oscilloscopes, bench power supplies, signal generators, soldering tools, breadboards, and through-hole components.
