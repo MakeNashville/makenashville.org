@@ -11,6 +11,8 @@ equipment:
   - "Oil Disposal"
   - "Air tools"
   - "Single Warehouse Bay"
+  - "A/C recovery machine"
+  - "Vacuum"
 ---
 
 Vehicle maintenance bay featuring 40-inch lift, socket sets, wrenches, oil disposal, and air tools. Direct vehicle entry for undercarriage access.
