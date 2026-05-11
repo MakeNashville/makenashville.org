@@ -21,6 +21,7 @@ equipment:
   - "Trimming, shaping, sponges, brushes and a variety of ceramics tools"
   - "Bats"
   - "Heat Guns"
+  - "clay to purchase"
 ---
 
 Complete pottery studio with 15 wheels, slab roller, Giffin Grip, 8 handbuilding stations, 3 kilns, and 15 house-made glazes.
