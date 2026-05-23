@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const sponsors = [
+  {
+    name: 'Volunteer Welding Supply',
+    image: 'volunteer-welding.webp',
+    width: 194,
+    height: 97,
+    url: 'https://meritusgas.com/partners/volunteer-welding/',
+  },
+  {
+    name: 'JET',
+    image: 'jet.webp',
+    width: 300,
+    height: 136,
+    url: 'https://www.jettools.com/',
+  },
+  {
+    name: 'Powermatic',
+    image: 'powermatic.webp',
+    width: 371,
+    height: 118,
+    url: 'https://www.powermatic.com/',
+  },
+  {
+    name: 'Axiom Tools',
+    image: 'axiom.webp',
+    width: 450,
+    height: 225,
+    url: 'https://www.axiomtoolco.com/',
+  },
+  {
+    name: 'SainSmart',
+    image: 'sainsmart.webp',
+    width: 239,
+    height: 56,
+    url: 'https://www.sainsmart.com/',
+  },
+];
+---
+<BaseLayout title="Sponsors - Make Nashville" description="Make Nashville is supported by sponsors who help keep creative tools and shops accessible to our Nashville community.">
+  <section class="hero">
+    <div class="container">
+      <h1>Our Sponsors</h1>
+      <p class="hero-subtitle">Make Nashville is a nonprofit makerspace, and we are deeply grateful to the companies whose support helps keep our shops running and our tools accessible to the community.</p>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="sponsors-heading">
+    <div class="container">
+      <h2 id="sponsors-heading" class="sr-only">Sponsors</h2>
+      <ul class="sponsor-grid" role="list">
+        {sponsors.map(sponsor => (
+          <li class="sponsor-card">
+            <a href={sponsor.url} rel="noopener" target="_blank" aria-label={`${sponsor.name} (opens in new tab)`}>
+              <img
+                src={`${base}images/sponsors/${sponsor.image}`}
+                alt={`${sponsor.name} logo`}
+                width={sponsor.width}
+                height={sponsor.height}
+                loading="lazy"
+              />
+              <span class="sponsor-name">{sponsor.name}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <h2>Become a sponsor</h2>
+      <p>Your sponsorship directly funds the tools, materials, and shop upkeep that keep our space open to makers across Nashville. We welcome cash, in-kind, and equipment sponsorships from companies who share our mission of making creative tools accessible.</p>
+      <a href="mailto:info@makenashville.org?subject=Sponsorship%20inquiry" class="btn btn--primary">Email us about sponsorship</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .hero-subtitle {
+    color: var(--color-text-secondary);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .sponsor-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .sponsor-card {
+    background: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .sponsor-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .sponsor-card a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    text-decoration: none;
+    color: var(--color-text-secondary);
+  }
+
+  .sponsor-card a:hover {
+    text-decoration: none;
+  }
+
+  .sponsor-card img {
+    max-width: 100%;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .sponsor-name {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .cta-section {
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .cta-section p {
+    color: var(--color-text-muted);
+    max-width: 650px;
+    margin: 0 auto var(--spacing-md);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .sponsor-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

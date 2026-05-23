@@ -82,6 +82,10 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
           <h3>Donate</h3>
           <p>Support the space through monetary donations via our <a href="https://go.makenashville.org/sustaining">contribution page</a>, <a href="https://venmo.com/makenashville">Venmo</a>, or write a check to "Make Nashville." Physical donations of items must first go through an approval process that includes the shop captain. While we certainly appreciate the thought, we don't accept physical donations of equipment unless discussed with a board member, staff, or shop captain.</p>
         </div>
+        <div class="contribute-card">
+          <h3>Sponsor</h3>
+          <p>Companies and brands can support Make Nashville through cash, in-kind, or equipment sponsorships that directly fund our shops and keep tools accessible to the community. <a href={`${import.meta.env.BASE_URL}sponsors/`}>See our current sponsors</a> or email <a href="mailto:info@makenashville.org?subject=Sponsorship%20inquiry">info@makenashville.org</a> to discuss sponsoring the space.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -290,10 +294,15 @@ const openAccess = shops.filter(s => !s.data.orientationRequired);
     line-height: 1.6;
   }
 
-  .access-grid,
-  .contribute-grid {
+  .access-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .contribute-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-md);
   }
 
