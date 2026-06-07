@@ -22,7 +22,6 @@ env:
   PAGES: "/ /our-space/ /get-involved/ /sponsors/ /history/"
   SCREENSHOT_BRANCH: screenshots
   PORT: "4321"
-  VIEWPORT: "1280,3200"
 
 jobs:
   screenshot:
@@ -58,23 +57,14 @@ jobs:
           done
           echo "Preview server failed to start"; exit 1
 
-      - name: Capture screenshots
+      - name: Capture full-page screenshots
+        env:
+          BASE_URL: http://127.0.0.1:${{ env.PORT }}
+          OUT_DIR: out
+          CHROME_PATH: /usr/bin/google-chrome
         run: |
-          mkdir -p out
-          for path in $PAGES; do
-            slug=$(echo "$path" | sed 's|^/||; s|/$||; s|/|-|g')
-            slug="${slug:-home}"
-            url="http://127.0.0.1:${PORT}${path}"
-            echo "→ $url"
-            google-chrome \
-              --headless=new --disable-gpu --hide-scrollbars --no-sandbox \
-              --window-size="${VIEWPORT}" \
-              --screenshot="out/${slug}.png" \
-              "$url" >/dev/null 2>&1
-            convert "out/${slug}.png" -quality 82 "out/${slug}.jpg"
-            rm "out/${slug}.png"
-            ls -lh "out/${slug}.jpg"
-          done
+          node scripts/screenshot-pages.mjs
+          ls -lh out/
 
       - name: Publish to screenshots branch
         env:
@@ -127,7 +117,7 @@ jobs:
             echo "${MARKER}"
             echo "## Preview screenshots"
             echo ""
-            echo "Built from \`${SHORT_SHA}\` at ${VIEWPORT/,/×}."
+            echo "Built from \`${SHORT_SHA}\` (full-page, 1280px wide)."
             echo ""
             for path in $PAGES; do
               slug=$(echo "$path" | sed 's|^/||; s|/$||; s|/|-|g')
