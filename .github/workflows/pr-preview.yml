@@ -1,0 +1,153 @@
+name: PR preview screenshots
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.*'
+      - 'package.json'
+      - 'package-lock.json'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: pr-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  PAGES: "/ /our-space/ /get-involved/ /sponsors/ /history/"
+  SCREENSHOT_BRANCH: screenshots
+  PORT: "4321"
+  VIEWPORT: "1280,3200"
+
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    # Skip fork PRs: GITHUB_TOKEN lacks write access from forks, so the push step would fail.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Serve dist
+        run: |
+          npm run preview -- --host 127.0.0.1 --port "${PORT}" &
+          for i in {1..30}; do
+            if curl -fs "http://127.0.0.1:${PORT}/" >/dev/null; then
+              echo "Preview server up"; exit 0
+            fi
+            sleep 1
+          done
+          echo "Preview server failed to start"; exit 1
+
+      - name: Capture screenshots
+        run: |
+          mkdir -p out
+          for path in $PAGES; do
+            slug=$(echo "$path" | sed 's|^/||; s|/$||; s|/|-|g')
+            slug="${slug:-home}"
+            url="http://127.0.0.1:${PORT}${path}"
+            echo "→ $url"
+            google-chrome \
+              --headless=new --disable-gpu --hide-scrollbars --no-sandbox \
+              --window-size="${VIEWPORT}" \
+              --screenshot="out/${slug}.png" \
+              "$url" >/dev/null 2>&1
+            convert "out/${slug}.png" -quality 82 "out/${slug}.jpg"
+            rm "out/${slug}.png"
+            ls -lh "out/${slug}.jpg"
+          done
+
+      - name: Publish to screenshots branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_NUM="${{ github.event.pull_request.number }}"
+          SHORT_SHA="${GITHUB_SHA:0:7}"
+          DIR="pr-${PR_NUM}/${SHORT_SHA}"
+          REMOTE="https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          TMP=$(mktemp -d)
+          if git ls-remote --exit-code --heads origin "${SCREENSHOT_BRANCH}" >/dev/null 2>&1; then
+            git clone --branch "${SCREENSHOT_BRANCH}" --depth 1 "${REMOTE}" "${TMP}"
+          else
+            git clone --depth 1 "${REMOTE}" "${TMP}"
+            (
+              cd "${TMP}"
+              git checkout --orphan "${SCREENSHOT_BRANCH}"
+              git rm -rf . >/dev/null 2>&1 || true
+              printf '# PR preview screenshots\n\nManaged by `.github/workflows/pr-preview.yml`. Do not edit by hand.\n' > README.md
+              git add README.md
+              git commit -m "init ${SCREENSHOT_BRANCH} branch"
+            )
+          fi
+
+          mkdir -p "${TMP}/${DIR}"
+          cp out/*.jpg "${TMP}/${DIR}/"
+          (
+            cd "${TMP}"
+            git add "${DIR}"
+            git commit -m "PR #${PR_NUM} @ ${SHORT_SHA}"
+            git push origin "${SCREENSHOT_BRANCH}"
+          )
+
+      - name: Post or update PR comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_NUM="${{ github.event.pull_request.number }}"
+          SHORT_SHA="${GITHUB_SHA:0:7}"
+          DIR="pr-${PR_NUM}/${SHORT_SHA}"
+          REPO="${{ github.repository }}"
+          BASE="https://raw.githubusercontent.com/${REPO}/${SCREENSHOT_BRANCH}/${DIR}"
+          MARKER="<!-- pr-preview-screenshots -->"
+
+          {
+            echo "${MARKER}"
+            echo "## Preview screenshots"
+            echo ""
+            echo "Built from \`${SHORT_SHA}\` at ${VIEWPORT/,/×}."
+            echo ""
+            for path in $PAGES; do
+              slug=$(echo "$path" | sed 's|^/||; s|/$||; s|/|-|g')
+              slug="${slug:-home}"
+              echo "<details><summary><code>${path}</code></summary>"
+              echo ""
+              echo "![${slug}](${BASE}/${slug}.jpg)"
+              echo ""
+              echo "</details>"
+              echo ""
+            done
+          } > comment.md
+
+          COMMENT_ID=$(gh api "repos/${REPO}/issues/${PR_NUM}/comments" \
+            --paginate --jq ".[] | select(.body | contains(\"${MARKER}\")) | .id" \
+            | head -1)
+
+          if [ -n "${COMMENT_ID}" ]; then
+            gh api "repos/${REPO}/issues/comments/${COMMENT_ID}" \
+              --method PATCH --field body=@comment.md
+          else
+            gh pr comment "${PR_NUM}" --body-file comment.md
+          fi
