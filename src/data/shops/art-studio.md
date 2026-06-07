@@ -1,13 +1,18 @@
 ---
 title: "Art Studio"
-tagline: "Easels and painting supplies"
+tagline: "Painting, drawing, and printmaking"
 image: "/images/shops/art-studio.webp"
 order: 2
 orientationRequired: false
 equipment:
-  - "Variety of Easels"
-  - "Paint tools"
-  - "Stamp Press"
+  - "Easel"
+  - "Printmaking Tools"
+  - "Painting Tools"
+  - "Drawing Tools"
+  - "Paper Cutter"
+  - "Stained Glass Tools"
+  - "Etching Press"
+  - "Bench Hooks"
 ---
 
-General-purpose painting space with easels, paint tools, and stamp press.
+Our community art studio is a welcoming creative space where artists of all ages and skill levels can learn, create and connect.
