@@ -33,7 +33,34 @@ try {
     const url = `${baseUrl}${path}`;
     console.log(`=> ${slug} (${url})`);
     await page.goto(url, { waitUntil: 'load', timeout: 30000 });
-    await new Promise((r) => setTimeout(r, 1500));
+
+    // Force lazy images to load, then scroll the full page to trigger any
+    // IntersectionObserver-based lazy loaders, then wait for everything to settle.
+    await page.evaluate(async () => {
+      document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+        img.loading = 'eager';
+      });
+      const step = 400;
+      const pause = 60;
+      for (let y = 0; y < document.body.scrollHeight; y += step) {
+        window.scrollTo(0, y);
+        await new Promise((r) => setTimeout(r, pause));
+      }
+      window.scrollTo(0, 0);
+      await Promise.all(
+        Array.from(document.images)
+          .filter((img) => !img.complete)
+          .map(
+            (img) =>
+              new Promise((resolve) => {
+                img.addEventListener('load', resolve, { once: true });
+                img.addEventListener('error', resolve, { once: true });
+              }),
+          ),
+      );
+    });
+
+    await new Promise((r) => setTimeout(r, 500));
     await page.screenshot({
       path: `${outDir}/${slug}.jpg`,
       type: 'jpeg',

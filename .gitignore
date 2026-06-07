@@ -3,3 +3,4 @@ dist/
 .astro/
 .superpowers/
 .DS_Store
+screenshots-out/
