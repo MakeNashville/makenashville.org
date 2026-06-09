@@ -1,0 +1,230 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout title="Our History - Make Nashville" description="From a monthly meetup to a 12,000 square foot makerspace, here is how Make Nashville came to be.">
+  <section class="hero">
+    <div class="container">
+      <h1>Our History</h1>
+      <p class="hero-subtitle">From a monthly meetup of curious tinkerers to a 12,000 square foot makerspace on Davidson Street, here is how Make Nashville came to be.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="beginnings-heading">
+    <div class="container narrow">
+      <h2 id="beginnings-heading">It started in a circle of chairs</h2>
+      <p>Make Nashville began as a monthly meetup. Makers, tinkerers, and the maker-curious would get together once a month to show off projects, swap ideas, and talk shop for as long as the night allowed.</p>
+      <p>The same wish kept coming up in those conversations: a shared space where we could work together, share tools, share skills, and build something more permanent than a once-a-month hang. A way to get out of our garages and into a real community.</p>
+
+      <figure class="history-figure">
+        <img
+          src={`${base}images/history/meetup-group.jpg`}
+          alt="An early Make Nashville meetup, with dozens of makers gathered around a long conference table covered in laptops, cables, and project boxes."
+          width="960"
+          height="541"
+          loading="lazy"
+        />
+        <figcaption>An early Make Nashville meetup, before there was a makerspace to meet in.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="founders-heading">
+    <div class="container narrow">
+      <h2 id="founders-heading">The 100 Founders</h2>
+      <p>A small group of us decided to turn the idea into a real plan. For nearly a year, we met several times a week to work through the details of what a Nashville makerspace could actually look like, from the layout of the shops to the shape of the membership. On December 22, 2015, Make Nashville was officially recognized as a 501(c)(3) nonprofit.</p>
+      <p>Funding came from what we called the 100 Founders: 100 people who each pitched in $100, with a generous donor matching what we raised up to $10,000. That seed money was enough to sign a lease and open the doors.</p>
+
+      <figure class="history-figure history-figure--video">
+        <div class="video-embed">
+          <iframe
+            src="https://player.vimeo.com/video/149734153?dnt=1"
+            title="Make Nashville 100 Founders campaign video, 2015"
+            loading="lazy"
+            allow="fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <figcaption>100 Founders campaign video, 2015. Jenn Deafenbaugh (video), Matt Kenigson (voiceover).</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="woodland-heading">
+    <div class="container narrow">
+      <h2 id="woodland-heading">947 Woodland Street</h2>
+      <p>Our first home opened in June 2016 at 947 Woodland Street. We didn't have the whole building; we shared it with two other organizations, Plate Tone (a printmaking studio) and Turnip Green Creative Reuse, with a handful of rooms in common. It was where Make Nashville stopped being an idea and started being a place.</p>
+      <p>Members built out the shops, ran their first classes, hosted their first open houses, and figured out, one project at a time, what a community makerspace in Nashville should feel like. After almost three years, our lease was not renewed, and we went looking for somewhere bigger.</p>
+
+      <figure class="history-figure">
+        <img
+          src={`${base}images/history/woodland-community.jpg`}
+          alt="A crowd of members gathered around a clear acrylic combat-robot arena at the Woodland Street space, with the Tennessee-shaped MAKE NASHVILLE logo on the wall behind them."
+          width="1080"
+          height="620"
+          loading="lazy"
+        />
+        <figcaption>A members' night at Woodland Street, gathered around the combat-robot arena.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="davidson-heading">
+    <div class="container narrow">
+      <h2 id="davidson-heading">620B Davidson Street</h2>
+      <p>After months of searching, we found our current home: 12,000 square feet at 620B Davidson Street. The lease was signed on February 27, 2019, the keys came the next day, and four days later the entire makerspace had been packed, hauled, and unloaded into the new warehouse. The move more than doubled our footprint and finally gave the shops the room they had been pushing against on Woodland.</p>
+      <p>Today, Make Nashville is a 700+ member nonprofit makerspace with shops for woodworking, metal, welding, electronics, textiles, 3D printing, and more. The meetup is still in there somewhere; it just has a much bigger room now.</p>
+
+      <figure class="history-figure">
+        <img
+          src={`${base}images/history/davidson-woodshop.jpg`}
+          alt="The woodshop at 620B Davidson Street, a long row of workbenches in a large open warehouse with a member working at one of the benches."
+          width="1920"
+          height="1080"
+          loading="lazy"
+        />
+        <figcaption>The woodshop at our 12,000 square foot Davidson Street space.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <h2>Come see the space</h2>
+      <p>Join us at an open house, every other Friday at 6 PM, to walk the shops and meet the people behind them.</p>
+      <a href="https://www.eventbrite.com/e/165415485169?aff=oddtdtcreator" rel="noopener" target="_blank" class="btn btn--primary">Open house details</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .hero-subtitle {
+    color: var(--color-text-secondary);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .narrow {
+    max-width: 720px;
+  }
+
+  .section h2 {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .section p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .history-figure {
+    margin: var(--spacing-lg) 0 0;
+  }
+
+  .history-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .video-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .image-placeholder {
+    aspect-ratio: 16 / 9;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.04),
+        rgba(0, 0, 0, 0.04) 12px,
+        rgba(0, 0, 0, 0.07) 12px,
+        rgba(0, 0, 0, 0.07) 24px
+      );
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: var(--spacing-md);
+  }
+
+  .image-placeholder span {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+  }
+
+  .image-placeholder small {
+    font-size: 0.8rem;
+    opacity: 0.85;
+  }
+
+  .history-figure figcaption {
+    margin-top: var(--spacing-sm);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    font-style: italic;
+  }
+
+  .cta-section {
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .cta-section p {
+    color: var(--color-text-muted);
+    max-width: 650px;
+    margin: 0 auto var(--spacing-md);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .section h2,
+    .cta-section h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
