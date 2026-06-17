@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1728 2160.3">
+  <title>Make Nashville floor plan</title>
   <defs>
     <style>
       .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14 {
@@ -235,28 +236,28 @@
     <line class="cls-14" x1="1013.67" y1="1820.26" x2="948.3" y2="1820.26"/>
   </g>
   <g id="text">
+    <a href="#3d-printing" class="shop-link"><text class="cls-19" transform="translate(657.95 568.73)"><tspan x="0" y="0">3D PRINTING</tspan></text></a>
+    <a href="#art-studio" class="shop-link"><text class="cls-19" transform="translate(1317.56 555.73)"><tspan x="0" y="0"> ART </tspan><tspan x="-16.33" y="26">STUDIO</tspan></text></a>
+    <a href="#autoshop" class="shop-link"><text class="cls-19" transform="translate(1130.68 1515.3)"><tspan x="0" y="0">AUTO SHOP</tspan></text></a>
+    <a href="#ceramics" class="shop-link"><text class="cls-19" transform="translate(480.79 1666.23)"><tspan x="0" y="0">CERAMICS</tspan></text></a>
+    <a href="#cnc" class="shop-link"><text class="cls-19" transform="translate(734.93 999.75)"><tspan x="0" y="0">CNC</tspan></text></a>
+    <a href="#darkroom" class="shop-link"><text class="cls-19" transform="translate(1072.04 1070.04)"><tspan x="0" y="0">DARKROOM</tspan></text></a>
+    <a href="#electronics-lab" class="shop-link"><text class="cls-19" transform="translate(548.58 856.38)"><tspan x="0" y="0">ELECTRONICS</tspan></text></a>
+    <a href="#laser" class="shop-link"><text class="cls-19" transform="translate(1234.65 1367.35)"><tspan x="0" y="0">LASER</tspan></text></a>
+    <a href="#metalshop" class="shop-link"><text class="cls-19" transform="translate(1126.64 1707.27)"><tspan x="0" y="0">ME</tspan><tspan class="cls-22" x="36.46" y="0">T</tspan><tspan x="48.48" y="0">AL SHOP</tspan></text></a>
+    <a href="#photo-studio" class="shop-link"><text class="cls-19" transform="translate(770.89 843.39)"><tspan x="0" y="0">PHOTO </tspan><tspan x="-2.65" y="26">STUDIO</tspan></text></a>
+    <a href="#sewing" class="shop-link"><text class="cls-19" transform="translate(369.37 568.73)"><tspan x="0" y="0">TEXTILE A</tspan><tspan class="cls-27" x="117.38" y="0">R</tspan><tspan x="133.85" y="0">TS</tspan></text></a>
+    <a href="#woodshop" class="shop-link"><text class="cls-19" transform="translate(468.78 1094.9)"><tspan x="0" y="0">WOOD SHOP</tspan></text></a>
     <text class="cls-19" transform="translate(1072.03 883.34)"><tspan x="0" y="0">KITCHEN</tspan></text>
     <text class="cls-17" transform="translate(1235.65 791.72)"><tspan x="0" y="0">WOMENS </tspan><tspan x="-9.85" y="20">RESTROOM</tspan></text>
     <text class="cls-17" transform="translate(1251.35 947.81)"><tspan x="0" y="0">MENS </tspan><tspan x="-25.19" y="20">RESTROOM</tspan></text>
     <text class="cls-17" transform="translate(561.95 437.73)"><tspan x="0" y="0">PRI</tspan><tspan class="cls-30" x="29.68" y="0">V</tspan><tspan class="cls-23" x="39.69" y="0">A</tspan><tspan x="50.04" y="0">TE </tspan><tspan x="10.51" y="20">RES</tspan><tspan class="cls-15" x="46.19" y="20">T</tspan><tspan x="54.54" y="20">-</tspan><tspan x="8.01" y="40">ROOM</tspan></text>
     <text class="cls-17" transform="translate(1259.35 1047.9)"><tspan x="0" y="0">PRI</tspan><tspan class="cls-30" x="29.68" y="0">V</tspan><tspan class="cls-23" x="39.69" y="0">A</tspan><tspan x="50.04" y="0">TE </tspan><tspan x="10.51" y="20">RES</tspan><tspan class="cls-15" x="46.19" y="20">T</tspan><tspan x="54.54" y="20">-</tspan><tspan x="8.01" y="40">ROOM</tspan></text>
-    <text class="cls-19" transform="translate(1072.04 1070.04)"><tspan x="0" y="0">DARKROOM</tspan></text>
-    <text class="cls-19" transform="translate(770.89 843.39)"><tspan x="0" y="0">PHOTO </tspan><tspan x="-2.65" y="26">STUDIO</tspan></text>
     <text class="cls-19" transform="translate(262.34 824.83) rotate(-90)"><tspan x="0" y="0">MEMBER STORAGE</tspan></text>
-    <text class="cls-19" transform="translate(548.58 856.38)"><tspan x="0" y="0">ELECTRONICS</tspan></text>
-    <text class="cls-19" transform="translate(369.37 568.73)"><tspan x="0" y="0">TEXTILE A</tspan><tspan class="cls-27" x="117.38" y="0">R</tspan><tspan x="133.85" y="0">TS</tspan></text>
-    <text class="cls-19" transform="translate(1317.56 555.73)"><tspan x="0" y="0"> ART </tspan><tspan x="-16.33" y="26">STUDIO</tspan></text>
     <text class="cls-19" transform="translate(319.27 843.39)"><tspan x="0" y="0">MU</tspan><tspan class="cls-22" x="38.66" y="0">L</tspan><tspan x="50.23" y="0">TIPURPOSE </tspan><tspan x="55.79" y="26">ROOM</tspan></text>
-    <text class="cls-19" transform="translate(657.95 568.73)"><tspan x="0" y="0">3D PRINTING</tspan></text>
-    <text class="cls-19" transform="translate(468.78 1094.9)"><tspan x="0" y="0">WOOD SHOP</tspan></text>
-    <text class="cls-19" transform="translate(734.93 999.75)"><tspan x="0" y="0">CNC</tspan></text>
     <text class="cls-19" transform="translate(427.65 1367.35)"><tspan x="0" y="0">OPEN WORK S</tspan><tspan class="cls-20" x="169.82" y="0">P</tspan><tspan x="184.05" y="0">ACE</tspan></text>
-    <text class="cls-19" transform="translate(480.79 1666.23)"><tspan x="0" y="0">CERAMICS</tspan></text>
     <text class="cls-19" transform="translate(745.14 1968.77)"><tspan x="0" y="0">LOADING DOCK</tspan></text>
-    <text class="cls-19" transform="translate(1126.64 1707.27)"><tspan x="0" y="0">ME</tspan><tspan class="cls-22" x="36.46" y="0">T</tspan><tspan x="48.48" y="0">AL SHOP</tspan></text>
     <text class="cls-19" transform="translate(1080.25 1322.01)"><tspan x="0" y="0">KILNS</tspan></text>
-    <text class="cls-19" transform="translate(1234.65 1367.35)"><tspan x="0" y="0">LASER</tspan></text>
-    <text class="cls-19" transform="translate(1130.68 1515.3)"><tspan x="0" y="0">AUTO SHOP</tspan></text>
     <text class="cls-19" transform="translate(1008.66 568.73)"><tspan x="0" y="0">CONFERENCE ROOM</tspan></text>
     <text class="cls-19" transform="translate(793.7 283.91)"><tspan x="0" y="0">PUBLIC </tspan><tspan class="cls-20" x="94.68" y="0">P</tspan><tspan x="108.91" y="0">ARKING LOT</tspan></text>
     <text class="cls-19" transform="translate(837.47 367.12)"><tspan x="0" y="0">FRONT ENT</tspan><tspan class="cls-29" x="134.28" y="0">R</tspan><tspan x="150.29" y="0">Y</tspan></text>
