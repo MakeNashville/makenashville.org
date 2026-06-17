@@ -1,10 +1,12 @@
 ---
+import gallery from '../data/gallery.json';
+
 const { pathname } = Astro.url;
 const base = import.meta.env.BASE_URL;
 
 const navLinks = [
   { href: `${base}our-space/`, label: 'Our Space' },
-  { href: `${base}gallery/`, label: 'Gallery' },
+  ...(gallery.length > 0 ? [{ href: `${base}gallery/`, label: 'Gallery' }] : []),
   { href: `${base}calendar/`, label: 'Calendar' },
 ];
 ---
