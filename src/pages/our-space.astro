@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ShopDetail from '../components/ShopDetail.astro';
 import Testimonial from '../components/Testimonial.astro';
 import { getCollection, render } from 'astro:content';
+import floorPlanSvg from '../../public/images/raw-floor.svg?raw';
 
 const shops = (await getCollection('shops')).sort((a, b) => a.data.order - b.data.order);
 const base = import.meta.env.BASE_URL;
@@ -28,19 +29,16 @@ const shopsWithContent = await Promise.all(
 
   <section class="section floor-plan-section">
     <div class="container">
-      <img src={`${base}images/raw-floor.svg`} alt="Make Nashville floor plan showing layout of all shops including woodshop, metalshop, ceramics, 3D printing, and more" class="floor-plan" />
+      <div class="floor-plan" set:html={floorPlanSvg} />
+      <nav class="sr-only" aria-label="Jump to shop">
+        <ul>
+          {shops.map(shop => (
+            <li><a href={`#${shop.id}`}>{shop.data.title}</a></li>
+          ))}
+        </ul>
+      </nav>
     </div>
   </section>
-
-  <nav class="shop-subnav" aria-label="Shop navigation">
-    <div class="container">
-      <ul role="list">
-        {shops.map(shop => (
-          <li><a href={`#${shop.id}`}>{shop.data.title}</a></li>
-        ))}
-      </ul>
-    </div>
-  </nav>
 
   <section class="section" aria-labelledby="shops-heading">
     <div class="container">
@@ -105,37 +103,41 @@ const shopsWithContent = await Promise.all(
   }
 
   .floor-plan {
-    width: 100%;
-    height: auto;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
   }
 
-  .shop-subnav {
-    padding: var(--spacing-sm) 0 var(--spacing-md);
-  }
-
-  .shop-subnav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-xs);
-    justify-content: center;
-  }
-
-  .shop-subnav a {
+  .floor-plan :global(svg) {
     display: block;
-    background: var(--color-bg-alt);
-    color: var(--color-link);
-    padding: 0.35rem 0.85rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    text-decoration: none;
+    width: 100%;
+    height: auto;
   }
 
-  .shop-subnav a:hover {
-    background: var(--color-accent);
-    color: var(--color-white);
+  .floor-plan :global(.shop-link) {
+    cursor: pointer;
+  }
+
+  .floor-plan :global(.shop-link text) {
+    fill: var(--color-accent);
+    font-weight: 700;
+    text-decoration: underline;
+    transition: fill 0.15s ease;
+  }
+
+  .floor-plan :global(.shop-link:hover text),
+  .floor-plan :global(.shop-link:focus-visible text) {
+    fill: #8a0a1f;
+  }
+
+  .floor-plan :global(.shop-link:focus) {
+    outline: none;
+  }
+
+  .floor-plan :global(.shop-link:focus-visible) {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 
   .cta-section {
