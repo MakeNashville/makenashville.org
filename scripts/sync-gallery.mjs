@@ -51,21 +51,24 @@ async function main() {
       continue;
     }
 
-    const bytes = await downloadFile(drive, file.id);
-    const { thumbBuffer, largeBuffer, width, height } = await processImage(bytes);
-    await writeFile(path.join(galleryDir, `${file.id}-thumb.webp`), thumbBuffer);
-    await writeFile(path.join(galleryDir, `${file.id}-large.webp`), largeBuffer);
-
-    kept.push(
-      buildManifestEntry({
-        id: file.id,
-        alt,
-        width,
-        height,
-        createdTime: file.createdTime,
-      }),
-    );
-    console.log(`sync-gallery: processed ${file.name} (${file.id}).`);
+    try {
+      const bytes = await downloadFile(drive, file.id);
+      const { thumbBuffer, largeBuffer, width, height } = await processImage(bytes);
+      await writeFile(path.join(galleryDir, `${file.id}-thumb.webp`), thumbBuffer);
+      await writeFile(path.join(galleryDir, `${file.id}-large.webp`), largeBuffer);
+      kept.push(
+        buildManifestEntry({
+          id: file.id,
+          alt,
+          width,
+          height,
+          createdTime: file.createdTime,
+        }),
+      );
+      console.log(`sync-gallery: processed ${file.name} (${file.id}).`);
+    } catch (err) {
+      skipped.push(`${file.name} (processing failed: ${err.message})`);
+    }
   }
 
   const manifest = sortManifest(kept);

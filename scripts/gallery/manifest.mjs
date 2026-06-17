@@ -14,7 +14,11 @@ export function buildManifestEntry({ id, alt, width, height, createdTime }) {
 }
 
 export function sortManifest(entries) {
-  return [...entries].sort((a, b) => (a.createdTime < b.createdTime ? 1 : -1));
+  return [...entries].sort((a, b) => {
+    if (a.createdTime < b.createdTime) return 1;
+    if (a.createdTime > b.createdTime) return -1;
+    return 0;
+  });
 }
 
 export async function writeManifest(entries, manifestPath) {
@@ -28,7 +32,9 @@ export async function cleanupOrphans(galleryDir, keepIds) {
   const deleted = [];
   for (const file of files) {
     if (!file.endsWith('.webp')) continue;
-    const id = file.replace(/-(thumb|large)\.webp$/, '');
+    const match = file.match(/^(.+)-(thumb|large)\.webp$/);
+    if (!match) continue;
+    const id = match[1];
     if (!keepIds.has(id)) {
       await unlink(path.join(galleryDir, file));
       deleted.push(file);

@@ -61,3 +61,27 @@ test('cleanupOrphans removes only files whose IDs are not in keepIds', async () 
   assert.deepEqual(deleted.sort(), ['gone-large.webp', 'gone-thumb.webp']);
   assert.deepEqual(remaining, ['.gitkeep', 'keep1-large.webp', 'keep1-thumb.webp']);
 });
+
+test('cleanupOrphans leaves .webp files without the thumb/large suffix alone', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'gallery-test-'));
+  await writeFile(path.join(dir, 'cover.webp'), 'x');
+  await writeFile(path.join(dir, 'random-name.webp'), 'x');
+  await writeFile(path.join(dir, 'keep1-thumb.webp'), 'x');
+
+  const deleted = await cleanupOrphans(dir, new Set(['keep1']));
+  const remaining = (await readdir(dir)).sort();
+
+  assert.deepEqual(deleted, []);
+  assert.deepEqual(remaining, ['cover.webp', 'keep1-thumb.webp', 'random-name.webp']);
+});
+
+test('sortManifest is stable on equal createdTime', () => {
+  const entries = [
+    { id: 'a', createdTime: '2026-01-01T00:00:00Z' },
+    { id: 'b', createdTime: '2026-01-01T00:00:00Z' },
+    { id: 'c', createdTime: '2026-01-01T00:00:00Z' },
+  ];
+  const a = sortManifest(entries).map((e) => e.id);
+  const b = sortManifest(entries).map((e) => e.id);
+  assert.deepEqual(a, b);
+});

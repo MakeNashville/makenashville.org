@@ -21,7 +21,7 @@ const photos = gallery;
         <ul class="gallery-grid" role="list">
           {photos.map(photo => (
             <li class="gallery-item">
-              <a href={`#photo-${photo.id}`} class="gallery-thumb-link" aria-label={`View larger: ${photo.alt}`}>
+              <a href={`#photo-${photo.id}`} class="gallery-thumb-link" id={`photo-${photo.id}-thumb`} aria-label={`View larger: ${photo.alt}`}>
                 <img
                   src={`${base}${photo.thumb.replace(/^\//, '')}`}
                   alt={photo.alt}
@@ -31,8 +31,8 @@ const photos = gallery;
                   height="600"
                 />
               </a>
-              <div class="lightbox" id={`photo-${photo.id}`} role="dialog" aria-modal="true" aria-label={photo.alt}>
-                <a href="#gallery" class="lightbox-backdrop" aria-label="Close photo viewer" tabindex="-1"></a>
+              <div class="lightbox" id={`photo-${photo.id}`} aria-label={photo.alt}>
+                <a href={`#photo-${photo.id}-thumb`} class="lightbox-backdrop" aria-label="Close photo viewer" tabindex="-1"></a>
                 <figure class="lightbox-figure">
                   <img
                     src={`${base}${photo.large.replace(/^\//, '')}`}
@@ -40,9 +40,8 @@ const photos = gallery;
                     width={photo.width}
                     height={photo.height}
                   />
-                  <figcaption class="sr-only">{photo.alt}</figcaption>
                 </figure>
-                <a href="#gallery" class="lightbox-close" aria-label="Close photo viewer">Close</a>
+                <a href={`#photo-${photo.id}-thumb`} class="lightbox-close" aria-label="Close photo viewer">Close</a>
               </div>
             </li>
           ))}
@@ -54,10 +53,9 @@ const photos = gallery;
   <script is:inline>
     document.addEventListener('keydown', (e) => {
       if (e.key !== 'Escape') return;
-      if (!document.querySelector('.lightbox:target')) return;
-      const url = new URL(window.location.href);
-      url.hash = 'gallery';
-      history.replaceState(null, '', url);
+      const open = document.querySelector('.lightbox:target');
+      if (!open) return;
+      window.location.hash = `${open.id}-thumb`;
     });
   </script>
 </BaseLayout>
