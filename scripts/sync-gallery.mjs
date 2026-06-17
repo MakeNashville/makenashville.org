@@ -45,11 +45,8 @@ async function main() {
     if (!SUPPORTED_MIME.has(file.mimeType)) {
       continue;
     }
-    const alt = (file.description ?? '').trim();
-    if (!alt) {
-      skipped.push(`${file.name} (missing Description / alt text)`);
-      continue;
-    }
+    const alt = file.name.replace(/\.[^.]+$/, '').trim() || file.name.trim();
+    const caption = (file.description ?? '').trim() || null;
 
     try {
       const bytes = await downloadFile(drive, file.id);
@@ -60,6 +57,7 @@ async function main() {
         buildManifestEntry({
           id: file.id,
           alt,
+          caption,
           width,
           height,
           createdTime: file.createdTime,

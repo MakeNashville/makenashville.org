@@ -14,6 +14,7 @@ test('buildManifestEntry produces the expected shape and URLs', () => {
   const entry = buildManifestEntry({
     id: 'abc123',
     alt: 'A workshop in progress',
+    caption: 'Members soldering a custom PCB.',
     width: 1600,
     height: 1067,
     createdTime: '2026-06-10T12:00:00Z',
@@ -21,12 +22,24 @@ test('buildManifestEntry produces the expected shape and URLs', () => {
   assert.deepEqual(entry, {
     id: 'abc123',
     alt: 'A workshop in progress',
+    caption: 'Members soldering a custom PCB.',
     thumb: '/images/gallery/abc123-thumb.webp',
     large: '/images/gallery/abc123-large.webp',
     width: 1600,
     height: 1067,
     createdTime: '2026-06-10T12:00:00Z',
   });
+});
+
+test('buildManifestEntry defaults caption to null when omitted', () => {
+  const entry = buildManifestEntry({
+    id: 'noCaption',
+    alt: 'A photo',
+    width: 800,
+    height: 600,
+    createdTime: '2026-06-10T12:00:00Z',
+  });
+  assert.equal(entry.caption, null);
 });
 
 test('sortManifest orders entries newest-first by createdTime', () => {

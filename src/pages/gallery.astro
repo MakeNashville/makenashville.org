@@ -40,6 +40,9 @@ const photos = gallery;
                     width={photo.width}
                     height={photo.height}
                   />
+                  {photo.caption && (
+                    <figcaption class="lightbox-caption">{photo.caption}</figcaption>
+                  )}
                 </figure>
                 <a href={`#photo-${photo.id}-thumb`} class="lightbox-close" aria-label="Close photo viewer">Close</a>
               </div>
@@ -154,12 +157,23 @@ const photos = gallery;
 
   .lightbox-figure img {
     max-width: 100%;
-    max-height: 90vh;
+    max-height: 80vh;
     width: auto;
     height: auto;
     display: block;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     border-radius: 4px;
+  }
+
+  .lightbox-caption {
+    color: var(--color-white);
+    text-align: center;
+    margin-top: var(--spacing-sm);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .lightbox-close {

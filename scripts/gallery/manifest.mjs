@@ -1,10 +1,11 @@
 import { writeFile, rename, readdir, unlink } from 'node:fs/promises';
 import path from 'node:path';
 
-export function buildManifestEntry({ id, alt, width, height, createdTime }) {
+export function buildManifestEntry({ id, alt, caption = null, width, height, createdTime }) {
   return {
     id,
     alt,
+    caption,
     thumb: `/images/gallery/${id}-thumb.webp`,
     large: `/images/gallery/${id}-large.webp`,
     width,
