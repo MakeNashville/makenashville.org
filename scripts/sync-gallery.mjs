@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { writeFile } from 'node:fs/promises';
+import { writeFile, readFile, appendFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getDriveClient } from './gallery/auth.mjs';
@@ -20,6 +20,16 @@ const manifestPath = path.join(repoRoot, 'src', 'data', 'gallery.json');
 const SUPPORTED_MIME = new Set(['image/jpeg', 'image/png', 'image/webp']);
 const HEIC_MIME = new Set(['image/heic', 'image/heif']);
 
+async function readExistingIds(filePath) {
+  try {
+    const raw = await readFile(filePath, 'utf8');
+    return new Set(JSON.parse(raw).map((e) => e.id));
+  } catch (err) {
+    if (err.code === 'ENOENT') return new Set();
+    throw err;
+  }
+}
+
 async function main() {
   const keyJson = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
   const folderId = process.env.GALLERY_FOLDER_ID;
@@ -29,6 +39,8 @@ async function main() {
     );
     return;
   }
+
+  const previousIds = await readExistingIds(manifestPath);
 
   const drive = getDriveClient(keyJson);
   const files = await listFolderFiles(drive, folderId);
@@ -81,7 +93,30 @@ async function main() {
     console.log(`sync-gallery: skipped ${skipped.length} file(s):`);
     for (const reason of skipped) console.log(`  - ${reason}`);
   }
-  console.log(`sync-gallery: manifest has ${manifest.length} photo(s).`);
+
+  const keptIds = new Set(kept.map((e) => e.id));
+  const added = kept.filter((e) => !previousIds.has(e.id)).length;
+  const removed = [...previousIds].filter((id) => !keptIds.has(id)).length;
+  const total = manifest.length;
+
+  console.log(`sync-gallery: summary: added=${added}, removed=${removed}, total=${total}`);
+
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    const skippedSection = skipped.length
+      ? `\n### Skipped (${skipped.length})\n\n${skipped.map((s) => `- ${s}`).join('\n')}\n`
+      : '';
+    await appendFile(
+      process.env.GITHUB_STEP_SUMMARY,
+      `## Gallery sync\n\n- **Added:** ${added}\n- **Removed:** ${removed}\n- **Total photos on the site:** ${total}\n${skippedSection}`,
+    );
+  }
+
+  if (process.env.GITHUB_OUTPUT) {
+    await appendFile(
+      process.env.GITHUB_OUTPUT,
+      `added=${added}\nremoved=${removed}\ntotal=${total}\n`,
+    );
+  }
 }
 
 main().catch((err) => {
