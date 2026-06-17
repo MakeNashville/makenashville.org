@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import gallery from '../data/gallery.json';
+
+const base = import.meta.env.BASE_URL;
+const photos = gallery;
+---
+<BaseLayout title="Gallery - Make Nashville" description="A look inside Make Nashville — workshops, projects, members, and the space at work.">
+  <section class="hero">
+    <div class="container">
+      <h1 id="gallery">Gallery</h1>
+      <p class="hero-subtitle">A look inside Make Nashville. Photos rotate as members share new ones.</p>
+    </div>
+  </section>
+
+  <section class="section gallery-section">
+    <div class="container">
+      {photos.length === 0 ? (
+        <p class="gallery-empty">Photos coming soon. Check back after the next sync.</p>
+      ) : (
+        <ul class="gallery-grid" role="list">
+          {photos.map(photo => (
+            <li class="gallery-item">
+              <a href={`#photo-${photo.id}`} class="gallery-thumb-link" aria-label={`View larger: ${photo.alt}`}>
+                <img
+                  src={`${base}${photo.thumb.replace(/^\//, '')}`}
+                  alt={photo.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="600"
+                />
+              </a>
+              <div class="lightbox" id={`photo-${photo.id}`} role="dialog" aria-modal="true" aria-label={photo.alt}>
+                <a href="#gallery" class="lightbox-backdrop" aria-label="Close photo viewer" tabindex="-1"></a>
+                <figure class="lightbox-figure">
+                  <img
+                    src={`${base}${photo.large.replace(/^\//, '')}`}
+                    alt={photo.alt}
+                    width={photo.width}
+                    height={photo.height}
+                  />
+                  <figcaption class="sr-only">{photo.alt}</figcaption>
+                </figure>
+                <a href="#gallery" class="lightbox-close" aria-label="Close photo viewer">Close</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+
+  <script is:inline>
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (!document.querySelector('.lightbox:target')) return;
+      const url = new URL(window.location.href);
+      url.hash = 'gallery';
+      history.replaceState(null, '', url);
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .hero-subtitle {
+    color: var(--color-text-dim);
+  }
+
+  .gallery-section {
+    padding-top: 0;
+  }
+
+  .gallery-empty {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: var(--spacing-lg) 0;
+  }
+
+  .gallery-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--spacing-sm);
+    margin: 0;
+    padding: 0;
+  }
+
+  .gallery-item {
+    position: relative;
+  }
+
+  .gallery-thumb-link {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1;
+  }
+
+  .gallery-thumb-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s ease;
+  }
+
+  .gallery-thumb-link:hover img,
+  .gallery-thumb-link:focus-visible img {
+    transform: scale(1.03);
+  }
+
+  .gallery-thumb-link:focus-visible {
+    outline: 2px solid var(--color-link);
+    outline-offset: 2px;
+  }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+  }
+
+  .lightbox:target {
+    display: flex;
+  }
+
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    cursor: zoom-out;
+  }
+
+  .lightbox-figure {
+    position: relative;
+    max-width: min(100%, 1400px);
+    max-height: 90vh;
+    margin: 0;
+    z-index: 1;
+  }
+
+  .lightbox-figure img {
+    max-width: 100%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    display: block;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    z-index: 2;
+    background: var(--color-white);
+    color: var(--color-text);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .lightbox-close:hover,
+  .lightbox-close:focus-visible {
+    background: var(--color-accent);
+    color: var(--color-white);
+  }
+
+  .lightbox-close:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+  }
+</style>
