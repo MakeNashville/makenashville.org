@@ -11,12 +11,12 @@
     "test": "node --test \"scripts/gallery/__tests__/*.test.mjs\""
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.2",
-    "astro": "^6.1.9"
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.4"
   },
   "devDependencies": {
-    "googleapis": "^144.0.0",
-    "puppeteer-core": "^25.1.0",
-    "sharp": "^0.34.0"
+    "googleapis": "^188.0.0",
+    "puppeteer-core": "^25.16.0",
+    "sharp": "^0.35.5"
   }
 }
